@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography, Button, Stack, Container, Paper } from '@mui/material';
-import KingBedOutlinedIcon from '@mui/icons-material/KingBedOutlined';
-import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
-import GarageOutlinedIcon from '@mui/icons-material/GarageOutlined';
+import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 const Hero = () => {
     return (
@@ -20,7 +20,7 @@ const Hero = () => {
                 backgroundRepeat: 'no-repeat',
                 overflow: 'hidden',
                 color: '#fff',
-                textAlign: 'center',
+                textAlign: 'left',
             }}
         >
             {/* Overlay */}
@@ -31,13 +31,13 @@ const Hero = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    background: 'linear-gradient(180deg, rgba(2, 13, 28, 0.5) 0%, rgba(2, 13, 28, 0.8) 100%)', // Deep Sea Blue overlay
+                    background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)', // Dark overlay
                     zIndex: 1,
                 }}
             />
 
             {/* Main Content */}
-            <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+            <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
                 <Typography
                     variant="h5"
                     sx={{
@@ -72,7 +72,7 @@ const Hero = () => {
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}
                     spacing={2}
-                    justifyContent="center"
+                    justifyContent="leftr"
                     sx={{ mb: 8 }}
                 >
                     <Button
@@ -108,7 +108,7 @@ const Hero = () => {
                 </Stack>
             </Container>
 
-            {/* Floating Stats Card (Bottom Right like Homely) */}
+            {/* Contact Info Card */}
             <Paper
                 elevation={0}
                 sx={{
@@ -116,7 +116,7 @@ const Hero = () => {
                     bottom: { xs: 'auto', md: '40px' },
                     right: { xs: 'auto', md: '40px' },
                     mt: { xs: 8, md: 0 },
-                    bgcolor: 'rgba(30, 41, 59, 0.9)', // Dark slate
+                    bgcolor: 'rgba(2, 13, 28, 0.8)', // Deep Navy transparency
                     backdropFilter: 'blur(12px)',
                     color: '#fff',
                     borderRadius: 4,
@@ -128,27 +128,74 @@ const Hero = () => {
                     zIndex: 2,
                     border: '1px solid rgba(255,255,255,0.1)',
                     maxWidth: { xs: '90%', md: 'auto' },
-                    mx: { xs: 'auto', md: 0 }
+                    mx: { xs: 'auto', md: 0 },
+                    cursor: 'default'
                 }}
             >
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                    <KingBedOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>4 Beds</Typography>
+                {/* Call */}
+                <Box
+                    component="a"
+                    href="tel:555-123-4567"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 1,
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        transition: 'transform 0.2s',
+                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
+                    }}
+                >
+                    <PhoneInTalkOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Call Us</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                    <BathtubOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>4 Baths</Typography>
+
+                {/* Email */}
+                <Box
+                    component="a"
+                    href="mailto:hello@homecoming.com"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 1,
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        transition: 'transform 0.2s',
+                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
+                    }}
+                >
+                    <EmailOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Email Now</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                    <GarageOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 500, color: 'text.secondary' }}>Garage</Typography>
+
+                {/* Schedule */}
+                <Box
+                    component="a"
+                    href="/contact"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 1,
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        transition: 'transform 0.2s',
+                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
+                    }}
+                >
+                    <CalendarMonthOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Schedule</Typography>
                 </Box>
-                <Box sx={{ ml: { sm: 2 }, textAlign: { xs: 'center', sm: 'left' } }}>
-                    <Typography variant="h5" sx={{ fontWeight: 700, color: '#fff' }}>
-                        $4,750,000
+
+                {/* Main CTA Text */}
+                <Box sx={{ ml: { sm: 2 }, textAlign: { xs: 'center', sm: 'left' }, borderLeft: { sm: '1px solid rgba(255,255,255,0.1)' }, pl: { sm: 4 } }}>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
+                        Free<br />Consultation
                     </Typography>
-                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                        Listed Price
+                    <Typography variant="caption" sx={{ color: 'primary.main', fontWeight: 600, letterSpacing: 0.5 }}>
+                        BOOK TODAY
                     </Typography>
                 </Box>
             </Paper>

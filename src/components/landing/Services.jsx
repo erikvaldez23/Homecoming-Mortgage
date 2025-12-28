@@ -1,107 +1,101 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Paper, Button, Stack } from '@mui/material';
+import { Box, Container, Grid, Typography, Stack, Divider } from '@mui/material';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import DomainAddOutlinedIcon from '@mui/icons-material/DomainAddOutlined';
 
 const servicesData = [
     {
-        title: 'Purchasing',
+        title: 'Home Purchasing',
         description: 'Find your dream home.',
-        icon: <HomeWorkOutlinedIcon sx={{ fontSize: 32 }} />,
+        icon: <HomeWorkOutlinedIcon sx={{ fontSize: 60 }} />,
     },
     {
         title: 'Refinancing',
         description: 'Lower your monthly payments.',
-        icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 32 }} />,
+        icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 60 }} />,
     },
     {
-        title: 'Commercial',
-        description: 'Expand your business.',
-        icon: <ApartmentOutlinedIcon sx={{ fontSize: 32 }} />,
+        title: 'Investment Properties',
+        description: 'Build your real estate portfolio.',
+        icon: <DomainAddOutlinedIcon sx={{ fontSize: 60 }} />,
     },
+    {
+        title: 'Commercial Mortgages',
+        description: 'Expand your business horizons.',
+        icon: <ApartmentOutlinedIcon sx={{ fontSize: 60 }} />,
+    }
 ];
 
 const Services = () => {
     return (
-        <Box sx={{ py: 12, bgcolor: 'background.default' }}>
-            <Container maxWidth="lg">
-                <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, textAlign: 'center' }}>
-                    Explore our services
-                </Typography>
-                <Typography variant="body1" sx={{ color: 'text.secondary', mb: 8, textAlign: 'center', maxWidth: 500, mx: 'auto' }}>
-                    Tailored mortgage solutions designed to meet your unique needs and financial goals.
+        <Box sx={{ py: 15, bgcolor: 'background.default', textAlign: 'center' }}>
+            <Container maxWidth="xl">
+                <Typography
+                    variant="h2"
+                    sx={{
+                        fontWeight: 800,
+                        mb: 8,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        background: 'linear-gradient(90deg, #fff, #aabbd1)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        textShadow: '0 0 20px rgba(0, 98, 204, 0.3)'
+                    }}
+                >
+                    Our Blueprint for Your Future
                 </Typography>
 
-                <Grid container spacing={3}>
+                <Grid container spacing={4} justifyContent="center" sx={{ mb: 10 }}>
                     {servicesData.map((service, index) => (
-                        <Grid item xs={12} sm={4} key={index}>
-                            <Paper
-                                sx={{
-                                    p: 4,
-                                    height: '100%',
-                                    bgcolor: 'background.paper',
-                                    borderRadius: 4,
-                                    border: '1px solid rgba(255,255,255,0.05)',
-                                    transition: 'all 0.3s ease',
-                                    cursor: 'pointer',
-                                    '&:hover': {
-                                        transform: 'translateY(-5px)',
-                                        borderColor: 'primary.main',
-                                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-                                        '& .icon-box': {
-                                            bgcolor: 'primary.main',
-                                            color: '#fff'
-                                        }
-                                    },
-                                }}
-                            >
-                                <Stack direction="row" alignItems="center" spacing={2} mb={3}>
-                                    <Box
-                                        className="icon-box"
-                                        sx={{
-                                            p: 1.5,
-                                            borderRadius: '50%',
-                                            bgcolor: 'rgba(0, 98, 204, 0.1)', // Light blue
-                                            color: 'primary.main',
-                                            transition: 'all 0.3s ease',
-                                            display: 'flex'
-                                        }}
-                                    >
-                                        {service.icon}
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                                            {service.title}
-                                        </Typography>
-                                        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                                            {service.description}
-                                        </Typography>
-                                    </Box>
-                                </Stack>
-
-                                <Button
-                                    endIcon={<ArrowForwardIcon />}
-                                    fullWidth
-                                    variant="outlined"
+                        <Grid item xs={12} sm={6} md={3} key={index}>
+                            <Stack alignItems="center" spacing={2}>
+                                <Box
                                     sx={{
-                                        borderColor: 'rgba(255,255,255,0.1)',
-                                        color: 'text.secondary',
-                                        justifyContent: 'space-between',
+                                        color: 'primary.main',
+                                        p: 2,
+                                        borderRadius: '50%',
+                                        border: '1px solid rgba(0, 98, 204, 0.3)',
+                                        bgcolor: 'rgba(0, 98, 204, 0.05)',
+                                        transition: 'all 0.3s ease',
                                         '&:hover': {
-                                            borderColor: 'primary.main',
-                                            color: 'primary.main',
-                                            bgcolor: 'transparent'
+                                            transform: 'scale(1.1)',
+                                            bgcolor: 'rgba(0, 98, 204, 0.1)',
+                                            boxShadow: '0 0 20px rgba(0, 98, 204, 0.4)'
                                         }
                                     }}
                                 >
-                                    Learn More
-                                </Button>
-                            </Paper>
+                                    {service.icon}
+                                </Box>
+                                <Box>
+                                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff', mb: 0.5 }}>
+                                        {service.title}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                        {service.description}
+                                    </Typography>
+                                </Box>
+                            </Stack>
                         </Grid>
                     ))}
                 </Grid>
+
+                <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', width: '60%', mx: 'auto', mb: 8 }} />
+
+                <Typography
+                    variant="h5"
+                    sx={{
+                        fontStyle: 'italic',
+                        color: 'text.secondary',
+                        fontWeight: 300,
+                        maxWidth: '800px',
+                        mx: 'auto'
+                    }}
+                >
+                    "The best way to predict your financial future is to create it."
+                </Typography>
             </Container>
         </Box>
     );

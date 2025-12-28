@@ -17,7 +17,7 @@ import Services from "./components/landing/Services";
 import About from "./components/landing/About";
 import LoanProducts from "./components/landing/LoanProducts";
 import Testimonials from "./components/landing/Testimonials";
-import CTA from "./components/landing/CTA";
+import CTA from "./components/global/CTA";
 
 // Sub Pages
 
@@ -81,8 +81,8 @@ function App() {
                 <>
                   <Hero />
                   <Services />
-                  <About />
-                  <LoanProducts />
+                  {/* <About /> */}
+                  {/* <LoanProducts /> */}
                   <Testimonials />
                   <CTA />
                 </>

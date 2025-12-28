@@ -1,4 +1,4 @@
-// src/components/content/CallToAction.jsx
+// src/components/global/CTA.jsx
 import React, { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -15,103 +15,56 @@ import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 
 /* ---- Brand tokens ---- */
-const BG = "#f2c230";      // section background
-const CTA_DARK = "#000";   // primary button
-const TEXT_LIGHT = "#000";
+const BG = "rgba(255, 255, 255, 0.05)"; // Transparent
+const CTA_PRIMARY = "#0062cc"; // Deep Sea Blue
+const TEXT_LIGHT = "#fff";
 
 /* Match button widths across variants */
 const BTN_WIDTH = { xs: "100%", sm: 220, md: 240 };
 
 /* ---- Copy registry ---- */
 const CTA_REGISTRY = {
-  "ac-heating": {
-    headline: "Restore Cold Air & Comfort",
+  "purchase": {
+    headline: "Find Your Dream Home Today",
     body:
-      "AC recharge, leak checks, heater and climate control diagnostics—done right so you stay comfortable year-round.",
+      "Get pre-approved quickly and shop with confidence. We offer competitive rates and personalized support for your home buying journey.",
   },
-  alignments: {
-    headline: "Tracks Straight. Tires Last Longer.",
+  "refinance": {
+    headline: "Lower Your Monthly Payments",
     body:
-      "Precision four-wheel alignments with suspension checks and a spec report. Better handling, better wear.",
+      "Take advantage of current market rates to reduce your interest, change your loan term, or access your home's equity.",
   },
-  "batteries-alternators": {
-    headline: "Strong Starts & Healthy Charging",
+  "commercial": {
+    headline: "Expand Your Business Portfolio",
     body:
-      "We test and replace batteries, alternators, and starters—so you’re never stuck with a no-start again.",
+      "Tailored commercial financing solutions for office, retail, and multi-family properties. Let's help your business grow.",
   },
-  brakes: {
-    headline: "Confident, Quiet Stopping",
+  "debt-consolidation": {
+    headline: "Simplify Your Finances",
     body:
-      "Pads, rotors, fluid exchange, and ABS diagnostics. Transparent options, premium parts, proper bed-in.",
+      "Consolidate high-interest debt into one manageable monthly payment using your home's equity.",
   },
-  "computer-diagnostics": {
-    headline: "Clear Answers. Smart Repairs.",
+  "private-mortgage": {
+    headline: "Flexible Lending Solutions",
     body:
-      "Advanced OBD-II and manufacturer-level diagnostics to pinpoint issues and build an action plan you can trust.",
+      "Alternative financing options when traditional banks say no. Fast approvals and common-sense underwriting.",
   },
-  "check-engine-light": {
-    headline: "Check Engine Light On?",
+  "renewal": {
+    headline: "Secure Your Best Renewal Rate",
     body:
-      "We’ll verify the fault, explain what it means, and give you a clear repair path—no guesswork.",
-  },
-  "cooling-system": {
-    headline: "Keep Your Engine Cool",
-    body:
-      "Radiators, water pumps, hoses, and thermostats. We stop overheating and protect your engine.",
-  },
-  "engine-service": {
-    headline: "From Tune-Ups to Major Repairs",
-    body:
-      "Comprehensive engine diagnostics and service to restore power, drivability, and reliability.",
-  },
-  "fleet-services": {
-    headline: "Keep Your Fleet Moving",
-    body:
-      "Fast, reliable maintenance and repairs with business-friendly scheduling to minimize downtime.",
-  },
-  "fuel-system": {
-    headline: "Performance & MPG Restored",
-    body:
-      "Pumps, injectors, filters, and induction cleaning to fix hesitation, misfires, and poor economy.",
-  },
-  "multi-point-inspection": {
-    headline: "Know Your Car’s Health",
-    body:
-      "Pre-purchase and multi-point inspections covering safety, wear, leaks, and a road-test report.",
-  },
-  "oil-filter-change": {
-    headline: "Fast Oil Service. Done Right.",
-    body:
-      "Correct spec oil and filter, torque-spec plug, top-offs, and maintenance light reset.",
-  },
-  "scheduled-maintenance": {
-    headline: "Stay On Schedule, Stay Protected",
-    body:
-      "OEM-recommended services that keep your vehicle performing—and your warranty happy.",
-  },
-  "state-inspection": {
-    headline: "Pass With Confidence",
-    body:
-      "Quick, compliant inspections with clear guidance if anything needs to be addressed.",
-  },
-  "suspension-steering": {
-    headline: "Ride Comfort & Control Restored",
-    body:
-      "Shocks, struts, control arms, tie-rods, and racks. Eliminate clunks, vibration, and wander.",
-  },
-  tires: {
-    headline: "Grip. Comfort. Safety.",
-    body:
-      "Mounting, road-force balance, rotations, repairs, and TPMS—plus tire options for any budget.",
+      "Don't just sign the lender's renewal letter. Compare rates and options to ensure you're getting the best deal possible.",
   },
 
-  _default: { headline: "Precision Auto Repair, Done Right", body: "Certified techs, honest pricing, and repairs done right the first time." },
+  _default: {
+    headline: "Let's Build Your Future",
+    body: "Whether you're buying, refinancing, or investing, our expert team is here to guide you every step of the way."
+  },
 };
 
 export default function CallToAction({
-  formUrl = "/quote",      // internal route or full external URL
+  formUrl = "/contact",      // internal route or full external URL
   useModal = false,        // true = open modal with embedded form
-  phoneHref = "tel:+14699690043",
+  phoneHref = "tel:+18005550000",
   onCtaClick,              // Optional handler to open global modal
 }) {
   const theme = useTheme();
@@ -126,10 +79,6 @@ export default function CallToAction({
   );
 
   // Animation variants
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.2 } },
-  };
   const fadeSlideVariant = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -152,46 +101,36 @@ export default function CallToAction({
   };
 
   return (
-    // <motion.div
-    //   initial="hidden"
-    //   whileInView="visible"
-    //   viewport={{ once: true, amount: 0.3 }}
-    //   variants={containerVariants}
-    // >
     <Box
       sx={{
         position: "relative",
-        py: 5,
-        px: { xs: 1, sm: 2, md: 3 },
+        py: 8,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         backgroundColor: BG,
-        borderRadius: isMobile ? 10 : 20,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderRadius: 8,
+        border: '1px solid rgba(255,255,255,0.1)',
         color: TEXT_LIGHT,
-        mt: 5,
-        mb: 5,
+        mt: 8,
+        mb: 8,
         overflow: "hidden",
+        mx: 'auto'
       }}
     >
-      {/* subtle overlay */}
-      {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.45 }}
-          transition={{ duration: 1 }}
-          style={{ position: "absolute", inset: 0, zIndex: 1 }}
-        /> */}
-
-      <Box sx={{ position: "relative", zIndex: 2, maxWidth: 1100, width: "100%" }}>
+      <Box sx={{ position: "relative", zIndex: 2 }}>
         <Typography
           variant={isMobile ? "h4" : "h2"}
           component={motion.h3}
           variants={fadeSlideVariant}
-          sx={{ fontWeight: 900, letterSpacing: 0.5, textTransform: "uppercase" }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          sx={{ fontWeight: 800, letterSpacing: '-0.02em', mb: 2 }}
         >
           {copy.headline}
         </Typography>
@@ -200,14 +139,17 @@ export default function CallToAction({
           variant="body1"
           component={motion.p}
           variants={fadeSlideVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           sx={{
-            mt: 2,
-            fontSize: isMobile ? "1rem" : "1.15rem",
+            mb: 5,
+            fontSize: isMobile ? "1rem" : "1.2rem",
             lineHeight: 1.6,
+            color: 'text.secondary',
             opacity: 0.9,
             mx: "auto",
-            maxWidth: 980,
           }}
         >
           {copy.body}
@@ -216,58 +158,61 @@ export default function CallToAction({
         <Box
           sx={{
             display: "flex",
-            gap: 1.5,
+            gap: 2,
             justifyContent: "center",
             flexWrap: "wrap",
-            mt: 3,
-            width: { xs: "min(92vw, 560px)", sm: "auto" },
-            mx: "auto",
+            width: "100%",
           }}
         >
-          {/* Primary — solid black */}
+          {/* Primary — Solid Blue */}
           <Button
             component={motion.button}
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
-            whileHover={{ scale: 1.07 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             onClick={handlePrimary}
             sx={{
-              width: BTN_WIDTH,                 // equal width
-              backgroundColor: CTA_DARK,
+              minWidth: { xs: '100%', sm: 200 },
+              backgroundColor: CTA_PRIMARY,
               color: "#fff",
-              fontWeight: 900,
-              px: { xs: 3, md: 4 },
-              py: { xs: 1.2, md: 1.4 },
-              borderRadius: "30px",
-              textTransform: "uppercase",
-              fontSize: { xs: "1rem", md: "1.05rem" },
+              fontWeight: 700,
+              px: 4,
+              py: 1.5,
+              borderRadius: "50px",
+              boxShadow: '0 4px 14px 0 rgba(0, 98, 204, 0.39)',
+              textTransform: "none",
+              fontSize: "1.1rem",
+              "&:hover": {
+                backgroundColor: "#0056b3",
+                boxShadow: '0 6px 20px rgba(0, 98, 204, 0.23)'
+              }
             }}
           >
-            Get a Free Quote
+            Get Pre-Approved
           </Button>
 
-          {/* Secondary — clear background, black text, black border */}
+          {/* Secondary — Outlined */}
           <Button
             onClick={() => (window.location.href = phoneHref)}
             sx={{
-              width: BTN_WIDTH,                 // equal width
-              borderRadius: "30px",
-              px: { xs: 3, md: 4 },
-              py: { xs: 1.2, md: 1.4 },
-              fontWeight: 900,
-              color: "#000",
-              border: "2px solid #000",
+              minWidth: { xs: '100%', sm: 200 },
+              borderRadius: "50px",
+              px: 4,
+              py: 1.5,
+              fontWeight: 700,
+              color: "#fff",
+              border: "1px solid rgba(255,255,255,0.3)",
               backgroundColor: "transparent",
-              textTransform: "uppercase",
-              fontSize: { xs: "1rem", md: "1.05rem" },
+              textTransform: "none",
+              fontSize: "1.1rem",
               "&:hover": {
-                borderColor: "#000",
-                backgroundColor: alpha("#000", 0.06), // tiny tint on hover (still feels clear)
+                borderColor: "#fff",
+                backgroundColor: "rgba(255,255,255,0.1)",
               },
             }}
           >
-            Call Now
+            Call Us Today
           </Button>
         </Box>
       </Box>
@@ -301,6 +246,5 @@ export default function CallToAction({
         </Dialog>
       )}
     </Box>
-    // </motion.div>
   );
 }

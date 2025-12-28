@@ -121,7 +121,7 @@ const NAV = [
   { label: "Contact", to: "/contact" },
 ];
 
-const PHONE = "555-123-4567"; // Placeholder
+const PHONE = "555-555-5555"; // Placeholder
 
 /* ------------------------------- Component ------------------------------- */
 export default function Topbar() {
