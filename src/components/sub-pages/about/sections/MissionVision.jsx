@@ -28,7 +28,7 @@ const MissionVision = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <Box sx={{ py: 15, bgcolor: "#020d1c", color: "#fff" }}>
+        <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
             <Container maxWidth="lg">
                 <Box sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
                     <Typography

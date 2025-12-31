@@ -36,7 +36,7 @@ const Services = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <Box sx={{ py: 20, bgcolor: '#050505', overflow: 'hidden', color: '#fff' }}>
+        <Box sx={{ py: 20, bgcolor: '#0a0a0a', overflow: 'hidden', color: '#fff' }}>
             <Container maxWidth="lg">
                 {/* Header */}
                 <Box sx={{ mb: 12, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>

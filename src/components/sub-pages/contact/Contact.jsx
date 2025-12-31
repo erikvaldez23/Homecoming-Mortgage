@@ -14,7 +14,7 @@ const Contact = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    bgcolor: "#050505",
+                    bgcolor: "#0a0a0a",
                     overflow: "hidden",
                 }}
             >
@@ -49,7 +49,7 @@ const Contact = () => {
             </Box>
 
             {/* Contact Content */}
-            <Box sx={{ py: 10, bgcolor: "background.default" }}>
+            <Box sx={{ py: 10, bgcolor: "#0a0a0a" }}>
                 <Container maxWidth="lg">
                     <Grid container spacing={8} justifyContent="center">
                         <Grid item xs={12} md={8}>

@@ -4,7 +4,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const About = () => {
     return (
-        <Box sx={{ py: 15, bgcolor: 'background.paper', position: 'relative', overflow: 'hidden' }}>
+        <Box sx={{ py: 15, bgcolor: '#0a0a0a', position: 'relative', overflow: 'hidden' }}>
             <Container maxWidth="lg">
                 <Grid container spacing={8} alignItems="center">
                     {/* Image Side - Homely style large radius */}

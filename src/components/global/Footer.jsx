@@ -16,7 +16,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 const Footer = () => {
   // Brand colors updated to match site theme
   const BRAND_BLUE = "#0062cc";
-  const BG_COLOR = "#050505";
+  const BG_COLOR = "#0a0a0a";
 
   const linkStyles = {
     color: BRAND_BLUE,

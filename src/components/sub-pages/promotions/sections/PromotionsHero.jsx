@@ -11,7 +11,7 @@ const PromotionsHero = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                bgcolor: "#050505",
+                bgcolor: "#0a0a0a",
                 overflow: "hidden",
             }}
         >

@@ -15,7 +15,7 @@ const Hero = () => {
                 alignItems: { xs: 'center', md: 'center' }, // Centered layout like Homely
                 justifyContent: 'center', // Centered layout
                 // backgroundImage: 'url(/landing/hero-bg.png)',
-                background: '#050505',
+                background: '#0a0a0a',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
