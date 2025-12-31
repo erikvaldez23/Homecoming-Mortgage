@@ -1,179 +1,103 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography, Stack, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Stack, Button, Grid, MenuItem } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-import CallRoundedIcon from "@mui/icons-material/CallRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
-const ACCENT = "#f2c230";
-const ACCENT_HOVER = "#ffd95a";
+// Brand Colors
+const BRAND_BLUE = "#0062cc";
 
-/* ------------------------- Form field styling -------------------------- */
+/* ------------------------- Styled Components -------------------------- */
 const FieldLabel = styled(Typography)(({ theme }) => ({
-    fontSize: 13,
-    opacity: 0.9,
-    marginBottom: 4,
-    color: "#fff",
-}));
-
-const Required = styled("span")(({ theme }) => ({
-    opacity: 0.9,
-}));
-
-const BaseControl = {
-    width: "100%",
-    borderRadius: 10,
-    border: `1px solid ${alpha("#fff", 0.16)}`,
-    background:
-        "linear-gradient(180deg, rgba(40,40,40,0.9), rgba(15,15,15,0.9))",
-    color: "#fff",
-    padding: "12px 14px",
     fontSize: 14,
+    fontWeight: 600,
+    marginBottom: 8,
+    color: "#e2e8f0", // Light grey
+    letterSpacing: "0.02em",
+}));
+
+const BaseControlStyle = {
+    width: "100%",
+    borderRadius: 12,
+    border: `1px solid ${alpha("#fff", 0.1)}`,
+    background: "rgba(255, 255, 255, 0.03)",
+    backdropFilter: "blur(10px)",
+    color: "#fff",
+    padding: "16px 20px",
+    fontSize: 16,
     outline: "none",
-    boxSizing: "border-box",
+    transition: "all 0.2s ease-in-out",
+    fontFamily: '"Inter", sans-serif',
 };
 
 const TextInput = styled("input")(({ theme }) => ({
-    ...BaseControl,
+    ...BaseControlStyle,
     "&::placeholder": {
-        color: alpha("#fff", 0.55),
+        color: alpha("#fff", 0.4),
     },
     "&:focus": {
-        borderColor: ACCENT,
-        boxShadow: `0 0 0 1px ${alpha(ACCENT, 0.45)}`,
+        borderColor: BRAND_BLUE,
+        background: "rgba(255, 255, 255, 0.05)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
     },
 }));
 
 const SelectInput = styled("select")(({ theme }) => ({
-    ...BaseControl,
+    ...BaseControlStyle,
     appearance: "none",
-    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"), linear-gradient(180deg, rgba(40,40,40,0.9), rgba(15,15,15,0.9))`,
-    backgroundRepeat: "no-repeat, no-repeat",
-    backgroundPosition: "right 10px center, center",
-    backgroundSize: "16px, auto",
-    paddingRight: "32px", // make room for arrow
-    "& option": {
-        color: "#000",
-    },
+    paddingRight: "40px",
+    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right 16px center",
+    backgroundSize: "20px",
     "&:focus": {
-        borderColor: ACCENT,
-        boxShadow: `0 0 0 1px ${alpha(ACCENT, 0.45)}`,
+        borderColor: BRAND_BLUE,
+        background: "rgba(255, 255, 255, 0.05)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
+    },
+    "& option": {
+        backgroundColor: "#0a0a0a",
+        color: "#fff",
     },
 }));
 
 const TextArea = styled("textarea")(({ theme }) => ({
-    ...BaseControl,
-    minHeight: 140,
+    ...BaseControlStyle,
+    minHeight: 120,
     resize: "vertical",
     "&::placeholder": {
-        color: alpha("#fff", 0.55),
+        color: alpha("#fff", 0.4),
     },
     "&:focus": {
-        borderColor: ACCENT,
-        boxShadow: `0 0 0 1px ${alpha(ACCENT, 0.45)}`,
+        borderColor: BRAND_BLUE,
+        background: "rgba(255, 255, 255, 0.05)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
     },
 }));
 
 const CTA = styled(Button)(({ theme }) => ({
     textTransform: "none",
-    fontWeight: 900,
-    paddingInline: theme.spacing(2.6),
-    paddingBlock: theme.spacing(1.2),
-    borderRadius: 12,
-    color: "#0e0f11",
-    background: `linear-gradient(180deg, ${ACCENT} 0%, ${ACCENT_HOVER} 100%)`,
-    boxShadow: `0 12px 28px ${alpha("#000", 0.35)}`,
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    paddingInline: theme.spacing(4),
+    paddingBlock: theme.spacing(1.5),
+    borderRadius: 50,
+    color: "#fff",
+    background: BRAND_BLUE,
+    boxShadow: `0 8px 20px ${alpha(BRAND_BLUE, 0.4)}`,
+    transition: "all 0.3s ease",
     "&:hover": {
-        background: `linear-gradient(180deg, ${ACCENT_HOVER} 0%, ${ACCENT} 100%)`,
-        boxShadow: `0 16px 36px ${alpha("#000", 0.45)}`,
+        background: alpha(BRAND_BLUE, 0.9),
+        transform: "translateY(-2px)",
+        boxShadow: `0 12px 28px ${alpha(BRAND_BLUE, 0.5)}`,
+    },
+    "&:disabled": {
+        background: alpha("#fff", 0.1),
+        color: alpha("#fff", 0.3),
+        boxShadow: "none",
     },
 }));
 
-const Heading = styled(Typography)(({ theme }) => ({
-    fontWeight: 900,
-    letterSpacing: 0.2,
-    lineHeight: 1.05,
-    fontSize: "clamp(1.8rem, 3.6vw, 2.6rem)",
-    color: "#fff",
-}));
-
 export default function ContactForm() {
-    // Vehicle data state
-    const [selectedYear, setSelectedYear] = useState("");
-    const [selectedMake, setSelectedMake] = useState("");
-    const [makes, setMakes] = useState([]);
-    const [models, setModels] = useState([]);
-    const [loadingMakes, setLoadingMakes] = useState(false);
-    const [loadingModels, setLoadingModels] = useState(false);
-
-    // Generate years (1981-2025) - NHTSA API supports vehicles from 1981 onwards
-    const years = Array.from({ length: 85 }, (_, i) => 2025 - i);
-
-    // Fetch makes when year is selected
-    useEffect(() => {
-        if (!selectedYear) {
-            setMakes([]);
-            setSelectedMake("");
-            setModels([]);
-            return;
-        }
-
-        const fetchMakes = async () => {
-            setLoadingMakes(true);
-            try {
-                const response = await fetch(
-                    `https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json` // using National Highway Traffic Safety Administration API
-                );
-                const data = await response.json();
-                if (data.Results) {
-                    // Sort makes alphabetically
-                    const sortedMakes = data.Results.sort((a, b) =>
-                        a.MakeName.localeCompare(b.MakeName)
-                    );
-                    setMakes(sortedMakes);
-                }
-            } catch (error) {
-                console.error("Error fetching makes:", error);
-            } finally {
-                setLoadingMakes(false);
-            }
-        };
-
-        fetchMakes();
-    }, [selectedYear]);
-
-    // Fetch models when make is selected
-    useEffect(() => {
-        if (!selectedYear || !selectedMake) {
-            setModels([]);
-            return;
-        }
-
-        const fetchModels = async () => {
-            setLoadingModels(true);
-            try {
-                const response = await fetch(
-                    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${encodeURIComponent(
-                        selectedMake
-                    )}/modelyear/${selectedYear}?format=json`
-                );
-                const data = await response.json();
-                if (data.Results) {
-                    // Sort models alphabetically
-                    const sortedModels = data.Results.sort((a, b) =>
-                        a.Model_Name.localeCompare(b.Model_Name)
-                    );
-                    setModels(sortedModels);
-                }
-            } catch (error) {
-                console.error("Error fetching models:", error);
-            } finally {
-                setLoadingModels(false);
-            }
-        };
-
-        fetchModels();
-    }, [selectedYear, selectedMake]);
-
     const [status, setStatus] = useState({
         submitting: false,
         info: { error: false, msg: null },
@@ -181,232 +105,92 @@ export default function ContactForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Basic validation
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-
-        // Add vehicle data from state
-        data.vehicleYear = selectedYear;
-        data.vehicleMake = selectedMake;
-        data.vehicleModel = data.vehicleModel; // already in form data but good to be explicit if we were building it manually
-
-        if (!data.name || !data.phone || !data.vehicleYear || !data.vehicleMake || !data.vehicleModel) {
+        setStatus({ submitting: true, info: { error: false, msg: null } });
+        setTimeout(() => {
             setStatus({
                 submitting: false,
-                info: { error: true, msg: "Please fill in all required fields." },
+                info: { error: false, msg: "Application request sent! We'll be in touch shortly." },
             });
-            return;
-        }
-
-        setStatus({
-            submitting: true,
-            info: { error: false, msg: null },
-        });
-
-        try {
-            // const response = await fetch('http://localhost:3000/api/contact', {
-            const response = await fetch('https://dynamic-auto-repair-server.onrender.com/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            const resData = await response.json();
-
-            if (response.ok) {
-                setStatus({
-                    submitting: false,
-                    info: { error: false, msg: "Message sent successfully! We'll be in touch soon." },
-                });
-                // Optional: Reset form here
-                e.target.reset();
-                setSelectedYear("");
-                setSelectedMake("");
-                setModels([]);
-            } else {
-                setStatus({
-                    submitting: false,
-                    info: { error: true, msg: resData.message || "An error occurred. Please try again." },
-                });
-            }
-        } catch (error) {
-            setStatus({
-                submitting: false,
-                info: { error: true, msg: "Failed to send message. Please check your connection." },
-            });
-        }
+            e.target.reset();
+        }, 1500);
     };
 
     return (
-        <Stack spacing={2.5}>
-            <Heading variant="h2">Get Your Free Auto Tint Quote!</Heading>
-
-            <Box
-                component="form"
-                noValidate
-                onSubmit={handleSubmit}
-                sx={{ mt: 1 }}
+        <Box
+            sx={{
+                p: { xs: 3, md: 6 },
+                background: "linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,0.05)",
+                boxShadow: "0 24px 48px rgba(0,0,0,0.4)",
+            }}
+        >
+            <Typography
+                variant="h2"
+                sx={{
+                    fontWeight: 800,
+                    fontSize: { xs: "2.5rem", md: "3rem" },
+                    mb: 2,
+                    background: `linear-gradient(135deg, #fff 0%, ${BRAND_BLUE} 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textAlign: "center",
+                    letterSpacing: "-0.02em"
+                }}
             >
-                <Stack spacing={2.4}>
-                    {/* Name */}
-                    <Box>
-                        <FieldLabel>
-                            Your Name <Required>(required)</Required>
-                        </FieldLabel>
-                        <TextInput
-                            required
-                            name="name"
-                            placeholder="Enter your full name"
-                        />
-                    </Box>
+                Start Your Journey
+            </Typography>
 
-                    {/* Phone */}
-                    <Box>
-                        <FieldLabel>
-                            Phone Number <Required>(required)</Required>
-                        </FieldLabel>
-                        <Box sx={{ position: "relative" }}>
-                            <Box
-                                sx={{
-                                    position: "absolute",
-                                    left: 14,
-                                    top: "50%",
-                                    transform: "translateY(-50%)",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    pointerEvents: "none",
-                                    color: alpha("#fff", 0.7),
-                                }}
-                            >
-                                <CallRoundedIcon fontSize="small" />
-                            </Box>
-                            <TextInput
-                                required
-                                name="phone"
-                                placeholder="(555) 555-5555"
-                                style={{ paddingLeft: 44 }}
-                            />
-                        </Box>
-                    </Box>
+            <Typography
+                variant="body1"
+                align="center"
+                sx={{ color: "grey.400", mb: 6, maxWidth: 500, mx: "auto" }}
+            >
+                Ready to find your dream home? Fill out the form below and one of our loan experts will reach out within 24 hours.
+            </Typography>
 
-                    {/* Vehicle Year */}
-                    <Box>
-                        <FieldLabel>
-                            Vehicle Year <Required>(required)</Required>
-                        </FieldLabel>
-                        <SelectInput
-                            name="vehicleYear"
-                            value={selectedYear}
-                            onChange={(e) => {
-                                setSelectedYear(e.target.value);
-                                setSelectedMake("");
-                                setModels([]);
-                            }}
-                            required
-                        >
-                            <option value="" disabled>
-                                Select Year
-                            </option>
-                            {years.map((year) => (
-                                <option key={year} value={year}>
-                                    {year}
-                                </option>
-                            ))}
+            <form onSubmit={handleSubmit}>
+                <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                        <FieldLabel>Full Name</FieldLabel>
+                        <TextInput required name="name" placeholder="John Doe" />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <FieldLabel>Email Address</FieldLabel>
+                        <TextInput required type="email" name="email" placeholder="john@example.com" />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <FieldLabel>Phone Number</FieldLabel>
+                        <TextInput required type="tel" name="phone" placeholder="(555) 123-4567" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <FieldLabel>I am interested in...</FieldLabel>
+                        <SelectInput required name="loanType" defaultValue="">
+                            <option value="" disabled>Select a loan type</option>
+                            <option value="purchase">Buying a Home</option>
+                            <option value="refinance">Refinancing</option>
+                            <option value="equity">Home Equity Line of Credit</option>
+                            <option value="other">General Inquiry</option>
                         </SelectInput>
-                    </Box>
-
-                    {/* Vehicle Make */}
-                    <Box>
-                        <FieldLabel>
-                            Vehicle Make <Required>(required)</Required>
-                        </FieldLabel>
-                        <SelectInput
-                            name="vehicleMake"
-                            value={selectedMake}
-                            onChange={(e) => setSelectedMake(e.target.value)}
-                            disabled={!selectedYear || loadingMakes}
-                            required
-                        >
-                            <option value="" disabled>
-                                {loadingMakes
-                                    ? "Loading makes..."
-                                    : selectedYear
-                                        ? "Select Make"
-                                        : "Select year first"}
-                            </option>
-                            {makes.map((make) => (
-                                <option key={make.MakeId} value={make.MakeName}>
-                                    {make.MakeName}
-                                </option>
-                            ))}
-                        </SelectInput>
-                    </Box>
-
-                    {/* Vehicle Model */}
-                    <Box>
-                        <FieldLabel>
-                            Vehicle Model <Required>(required)</Required>
-                        </FieldLabel>
-                        <SelectInput
-                            name="vehicleModel"
-                            disabled={!selectedMake || loadingModels}
-                            required
-                        >
-                            <option value="" disabled selected>
-                                {loadingModels
-                                    ? "Loading models..."
-                                    : selectedMake
-                                        ? "Select Model"
-                                        : "Select make first"}
-                            </option>
-                            {models.map((model) => (
-                                <option key={model.Model_ID} value={model.Model_Name}>
-                                    {model.Model_Name}
-                                </option>
-                            ))}
-                        </SelectInput>
-                    </Box>
-
-                    {/* Message */}
-                    <Box>
-                        <FieldLabel>Your Message</FieldLabel>
-                        <TextArea
-                            name="message"
-                            placeholder="Tell us what services you’re interested in or any questions you have."
-                        />
-                    </Box>
-
-                    {/* Submit */}
-                    <Box sx={{ pt: 0.5 }}>
-                        <CTA
-                            type="submit"
-                            size="large"
-                            fullWidth
-                            endIcon={<ArrowForwardRoundedIcon />}
-                            disabled={status.submitting}
-                        >
-                            {status.submitting ? "Sending..." : "Get My Auto Quote"}
+                    </Grid>
+                    <Grid item xs={12}>
+                        <FieldLabel>How can we help?</FieldLabel>
+                        <TextArea name="message" placeholder="Tell us a bit about your goals..." />
+                    </Grid>
+                    <Grid item xs={12} sx={{ textAlign: "center", mt: 2 }}>
+                        <CTA type="submit" size="large" endIcon={<ArrowForwardRoundedIcon />} disabled={status.submitting}>
+                            {status.submitting ? "Sending Request..." : "Get Started Now"}
                         </CTA>
-                    </Box>
-
+                    </Grid>
                     {status.info.msg && (
-                        <Typography
-                            sx={{
-                                color: status.info.error ? "#ff4d4d" : "#4caf50",
-                                textAlign: "center",
-                                fontSize: 14,
-                                mt: 2
-                            }}
-                        >
-                            {status.info.msg}
-                        </Typography>
+                        <Grid item xs={12}>
+                            <Typography sx={{ color: status.info.error ? "#ef4444" : "#10b981", textAlign: "center", fontWeight: 600, bgcolor: status.info.error ? "rgba(239, 68, 68, 0.1)" : "rgba(16, 185, 129, 0.1)", p: 2, borderRadius: 4 }}>
+                                {status.info.msg}
+                            </Typography>
+                        </Grid>
                     )}
-                </Stack>
-            </Box>
-        </Stack>
+                </Grid>
+            </form>
+        </Box>
     );
 }

@@ -9,17 +9,19 @@ import ScrollToTop from "./components/ScrollToTop";
 // Global Components
 import Topbar from "./components/global/Topbar";
 import Footer from "./components/global/Footer";
-import ContactForm from "./components/global/ContactForm";
 
 // Landing Page
 import Hero from "./components/landing/Hero";
 import Services from "./components/landing/Services";
-import About from "./components/landing/About";
+// import About from "./components/landing/About"; // Old About component
 import LoanProducts from "./components/landing/LoanProducts";
 import Testimonials from "./components/landing/Testimonials";
 import CTA from "./components/global/CTA";
 
 // Sub Pages
+import AboutPage from "./components/sub-pages/about/About";
+import PromotionsPage from "./components/sub-pages/promotions/Promotions";
+import ContactPage from "./components/sub-pages/contact/Contact";
 
 const theme = createTheme({
   palette: {
@@ -88,6 +90,9 @@ function App() {
                 </>
               }
             />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/promotions" element={<PromotionsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
           <Footer />
         </Router>

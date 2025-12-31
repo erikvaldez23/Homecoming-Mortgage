@@ -114,9 +114,9 @@ const PhoneCTA = styled(Button)(({ theme }) => ({
 /* --------------------------------- Data --------------------------------- */
 const NAV = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" }, // Anchor link or page
+  // { label: "Services", to: "/services" }, // Anchor link or page
   { label: "About", to: "/about" },
-  { label: "Loan Products", to: "/products" },
+  { label: "Promotions", to: "/promotions" },
   // { label: "Testimonials", to: "/testimonials" },
   { label: "Contact", to: "/contact" },
 ];
