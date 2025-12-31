@@ -39,7 +39,7 @@ const Hero = () => {
 
             {/* Main Content */}
             <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
-                <Typography
+                {/* <Typography
                     variant="h5"
                     sx={{
                         color: 'primary.main',
@@ -52,7 +52,7 @@ const Hero = () => {
                     }}
                 >
                     Homecoming Mortgage
-                </Typography>
+                </Typography> */}
 
                 <Typography
                     variant="h1"
