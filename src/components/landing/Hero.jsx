@@ -66,8 +66,8 @@ const Hero = () => {
                         color: '#fff',
                     }}
                 >
-                    Futuristic Haven<br />
-                    <Box component="span" sx={{ color: 'rgba(255,255,255,0.7)' }}>for your finances.</Box>
+                    Hero quote<br />
+                    <Box component="span" sx={{ color: 'rgba(255,255,255,0.7)' }}>to go here</Box>
                 </Typography>
 
                 <Stack
@@ -168,7 +168,7 @@ const Hero = () => {
                     }}
                 >
                     <EmailOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Email Now</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Email Us</Typography>
                 </Box>
 
                 {/* Schedule */}

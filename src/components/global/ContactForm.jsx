@@ -1,76 +1,97 @@
 import React, { useState } from "react";
 import { Box, Typography, Stack, Button, Grid, MenuItem } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, lighten } from "@mui/material/styles";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
 // Brand Colors
 const BRAND_BLUE = "#0062cc";
 
 /* ------------------------- Styled Components -------------------------- */
+/* ------------------------- Styled Components -------------------------- */
 const FieldLabel = styled(Typography)(({ theme }) => ({
-    fontSize: 14,
-    fontWeight: 600,
+    fontSize: 13, // Slightly smaller for a cleaner look
+    fontWeight: 700,
     marginBottom: 8,
-    color: "#e2e8f0", // Light grey
-    letterSpacing: "0.02em",
+    color: "#cbd5e1", // Cleaner grey
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
 }));
 
 const BaseControlStyle = {
     width: "100%",
-    borderRadius: 12,
-    border: `1px solid ${alpha("#fff", 0.1)}`,
-    background: "rgba(255, 255, 255, 0.03)",
-    backdropFilter: "blur(10px)",
+    borderRadius: 16, // More rounded
+    border: `1px solid ${alpha("#fff", 0.08)}`, // Subtler border
+    background: "rgba(255, 255, 255, 0.02)", // Much lighter fill
+    backdropFilter: "blur(16px)", // Stronger blur
     color: "#fff",
-    padding: "16px 20px",
+    padding: "18px 24px", // More spacious
     fontSize: 16,
     outline: "none",
-    transition: "all 0.2s ease-in-out",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", // Smoother transition
     fontFamily: '"Inter", sans-serif',
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)", // Inner depth
 };
 
 const TextInput = styled("input")(({ theme }) => ({
     ...BaseControlStyle,
     "&::placeholder": {
-        color: alpha("#fff", 0.4),
+        color: alpha("#fff", 0.3),
+        fontWeight: 400,
+    },
+    "&:hover": {
+        background: "rgba(255, 255, 255, 0.04)",
+        borderColor: alpha("#fff", 0.2),
     },
     "&:focus": {
         borderColor: BRAND_BLUE,
-        background: "rgba(255, 255, 255, 0.05)",
-        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
+        background: "rgba(255, 255, 255, 0.06)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.15)}, 0 10px 15px -3px rgba(0, 0, 0, 0.2)`,
+        transform: "translateY(-1px)",
     },
 }));
 
 const SelectInput = styled("select")(({ theme }) => ({
     ...BaseControlStyle,
     appearance: "none",
-    paddingRight: "40px",
-    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+    paddingRight: "48px",
+    cursor: "pointer",
+    backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "right 16px center",
+    backgroundPosition: "right 20px center",
     backgroundSize: "20px",
+    "&:hover": {
+        background: "rgba(255, 255, 255, 0.04)",
+        borderColor: alpha("#fff", 0.2),
+    },
     "&:focus": {
         borderColor: BRAND_BLUE,
-        background: "rgba(255, 255, 255, 0.05)",
-        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
+        background: "rgba(255, 255, 255, 0.06)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.15)}`,
     },
     "& option": {
-        backgroundColor: "#0a0a0a",
+        backgroundColor: "#1e1e1e",
         color: "#fff",
+        padding: "10px",
     },
 }));
 
 const TextArea = styled("textarea")(({ theme }) => ({
     ...BaseControlStyle,
-    minHeight: 120,
+    minHeight: 140,
     resize: "vertical",
+    lineHeight: 1.6,
     "&::placeholder": {
-        color: alpha("#fff", 0.4),
+        color: alpha("#fff", 0.3),
+    },
+    "&:hover": {
+        background: "rgba(255, 255, 255, 0.04)",
+        borderColor: alpha("#fff", 0.2),
     },
     "&:focus": {
         borderColor: BRAND_BLUE,
-        background: "rgba(255, 255, 255, 0.05)",
-        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.1)}`,
+        background: "rgba(255, 255, 255, 0.06)",
+        boxShadow: `0 0 0 4px ${alpha(BRAND_BLUE, 0.15)}, 0 10px 15px -3px rgba(0, 0, 0, 0.2)`,
+        transform: "translateY(-1px)",
     },
 }));
 
@@ -78,22 +99,27 @@ const CTA = styled(Button)(({ theme }) => ({
     textTransform: "none",
     fontWeight: 700,
     fontSize: "1.1rem",
-    paddingInline: theme.spacing(4),
-    paddingBlock: theme.spacing(1.5),
+    paddingInline: theme.spacing(6),
+    paddingBlock: theme.spacing(2),
     borderRadius: 50,
     color: "#fff",
-    background: BRAND_BLUE,
-    boxShadow: `0 8px 20px ${alpha(BRAND_BLUE, 0.4)}`,
-    transition: "all 0.3s ease",
+    background: `linear-gradient(135deg, ${BRAND_BLUE} 0%, ${alpha(BRAND_BLUE, 0.8)} 100%)`, // Gradient
+    boxShadow: `0 8px 20px -4px ${alpha(BRAND_BLUE, 0.5)}`,
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    border: "1px solid rgba(255,255,255,0.1)",
     "&:hover": {
-        background: alpha(BRAND_BLUE, 0.9),
-        transform: "translateY(-2px)",
-        boxShadow: `0 12px 28px ${alpha(BRAND_BLUE, 0.5)}`,
+        background: `linear-gradient(135deg, ${lighten(BRAND_BLUE, 0.1)} 0%, ${BRAND_BLUE} 100%)`,
+        transform: "translateY(-3px)",
+        boxShadow: `0 20px 30px -8px ${alpha(BRAND_BLUE, 0.6)}`,
+    },
+    "&:active": {
+        transform: "translateY(-1px)",
     },
     "&:disabled": {
         background: alpha("#fff", 0.1),
         color: alpha("#fff", 0.3),
         boxShadow: "none",
+        border: "none",
     },
 }));
 

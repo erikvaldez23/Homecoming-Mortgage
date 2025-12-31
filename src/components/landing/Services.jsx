@@ -9,25 +9,25 @@ const servicesData = [
     {
         id: '01',
         title: 'Home Purchasing',
-        description: 'Find your dream home with clarity and confidence.',
+        description: 'Whether you are shopping for a primary home or an investment property, our competitive pricing allows you to finance your loan with the lowest rates in the industry.',
         icon: <HomeWorkOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
         id: '02',
         title: 'Refinancing',
-        description: 'Optimize your mortgage to fit your life goals.',
+        description: 'We make it a point to refinance only when it is advantageous to the borrower and if we can cover most, if not all, of their closing costs.',
         icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
         id: '03',
         title: 'Investment Properties',
-        description: 'Build wealth through strategic real estate assets.',
+        description: 'Investment properties description',
         icon: <DomainAddOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
         id: '04',
         title: 'Commercial Lending',
-        description: 'Expand your business horizons with scalable capital.',
+        description: 'Commercial lending description',
         icon: <ApartmentOutlinedIcon sx={{ fontSize: 32 }} />,
     }
 ];

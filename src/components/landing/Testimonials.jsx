@@ -191,7 +191,7 @@ const Testimonials = () => {
                     )
                 }
 
-                <Button
+                {/* <Button
                     component={motion.a}
                     initial={{ scale: 0.9 }}
                     animate={{ scale: 1 }}
@@ -213,7 +213,7 @@ const Testimonials = () => {
                     href="#"
                 >
                     VIEW MORE ON GOOGLE
-                </Button>
+                </Button> */}
             </Container >
         </Box >
     );
