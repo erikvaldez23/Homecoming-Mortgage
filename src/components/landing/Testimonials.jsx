@@ -129,7 +129,7 @@ const Testimonials = () => {
     };
 
     return (
-        <Box id="reviews" sx={{ py: isMobile ? 8 : 12, textAlign: "center", bgcolor: "background.default" }}>
+        <Box id="reviews" sx={{ py: isMobile ? 8 : 12, textAlign: "center", bgcolor: "#050505" }}>
             <Container maxWidth="xl">
                 <Box textAlign="center" mb={8}>
                     <Typography variant="h2" sx={{ fontWeight: 800 }}>

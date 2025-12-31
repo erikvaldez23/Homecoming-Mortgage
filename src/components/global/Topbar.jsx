@@ -141,11 +141,12 @@ export default function Topbar() {
             sx={{ minHeight: TOOLBAR_HEIGHT, justifyContent: "space-between" }}
           >
             {/* Left: Logo */}
-            <LogoBox component={RouterLink} to="/">
-              {/* Use Text for now if logo isn't perfect, or keep image */}
-              <Box component="span" sx={{ fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-                Homecoming<Box component="span" sx={{ color: '#fff', opacity: 0.7, fontWeight: 300 }}>Mortgage</Box>
-              </Box>
+            <LogoBox component={RouterLink} to="/" sx={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src="/logo.png"
+                alt="Homecoming Mortgage"
+                style={{ width: '200px', height: 'auto', display: 'block' }}
+              />
             </LogoBox>
 
             {/* Center: Desktop Nav */}

@@ -1,66 +1,105 @@
-import React from "react";
-import { Box, Container, Grid, Typography, Card, CardContent } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Container, Typography, Stack, Collapse, IconButton } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DiamondIcon from "@mui/icons-material/Diamond";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 const values = [
     {
-        icon: <RocketLaunchIcon fontSize="large" color="primary" />,
-        title: "Mission",
-        description: "To empower individuals and families with the financial tools and knowledge needed to achieve homeownership.",
+        icon: <RocketLaunchIcon sx={{ fontSize: 40 }} />,
+        title: "Our Mission",
+        description: "To empower individuals and families with the financial tools and knowledge needed to achieve homeownership. We believe in making the complex simple.",
     },
     {
-        icon: <VisibilityIcon fontSize="large" color="primary" />,
-        title: "Vision",
-        description: "To be the most trusted and transparent mortgage partner in the industry, setting a new standard for client care.",
+        icon: <VisibilityIcon sx={{ fontSize: 40 }} />,
+        title: "Our Vision",
+        description: "To be the most trusted and transparent mortgage partner in the industry, setting a new standard for client care and ethical lending.",
     },
     {
-        icon: <DiamondIcon fontSize="large" color="primary" />,
-        title: "Values",
-        description: "Integrity, Transparency, Customer-Centricity, and Continuous Innovation guide everything we do.",
+        icon: <DiamondIcon sx={{ fontSize: 40 }} />,
+        title: "Core Values",
+        description: "Integrity, Transparency, Customer-Centricity, and Continuous Innovation guide everything we do. We put people before profits.",
     },
 ];
 
 const MissionVision = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+
     return (
-        <Box sx={{ py: 10, bgcolor: "background.paper" }}>
+        <Box sx={{ py: 15, bgcolor: "#020d1c", color: "#fff" }}>
             <Container maxWidth="lg">
-                <Typography variant="h2" align="center" sx={{ fontWeight: 800, mb: 8 }}>
-                    What drives us
-                </Typography>
-                <Grid container spacing={4}>
+                <Box sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                    <Typography
+                        variant="h2"
+                        sx={{
+                            fontWeight: 800,
+                            letterSpacing: "-0.03em",
+                            background: "linear-gradient(90deg, #fff, #90caf9)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            fontSize: { xs: "3rem", md: "4rem" },
+                            textAlign: "left"
+                        }}
+                    >
+                        What drives us.
+                    </Typography>
+                </Box>
+
+                <Stack spacing={0}>
                     {values.map((item, index) => (
-                        <Grid item xs={12} md={4} key={index}>
-                            <Card
-                                sx={{
-                                    height: "100%",
-                                    bgcolor: "rgba(255, 255, 255, 0.03)",
-                                    border: "1px solid rgba(255, 255, 255, 0.05)",
-                                    borderRadius: 4,
-                                    transition: "all 0.3s ease",
-                                    "&:hover": {
-                                        transform: "translateY(-10px)",
-                                        boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-                                        borderColor: "primary.main",
-                                    },
-                                }}
+                        <Box
+                            key={index}
+                            onMouseEnter={() => setActiveIndex(index)}
+                            sx={{
+                                borderBottom: "1px solid rgba(255,255,255,0.1)",
+                                py: 6,
+                                cursor: "pointer",
+                                transition: "all 0.4s ease",
+                                opacity: activeIndex === index ? 1 : 0.5,
+                                "&:hover": {
+                                    opacity: 1,
+                                    bgcolor: "rgba(255,255,255,0.02)",
+                                    pl: 2
+                                }
+                            }}
+                        >
+                            <Stack
+                                direction={{ xs: "column", md: "row" }}
+                                alignItems={{ xs: "flex-start", md: "center" }}
+                                justifyContent="space-between"
+                                spacing={4}
                             >
-                                <CardContent sx={{ p: 4, textAlign: "center" }}>
-                                    <Box sx={{ mb: 3, p: 2, bgcolor: "rgba(0, 98, 204, 0.1)", borderRadius: "50%", display: "inline-flex" }}>
-                                        {item.icon}
-                                    </Box>
-                                    <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+                                <Stack direction="row" alignItems="center" spacing={4} sx={{ width: { md: "40%" } }}>
+                                    <Typography variant="h6" sx={{ color: "rgba(255,255,255,0.3)", fontWeight: 700 }}>
+                                        0{index + 1}
+                                    </Typography>
+                                    <Typography variant="h3" sx={{ fontWeight: 600, fontSize: { xs: "2rem", md: "2.5rem" } }}>
                                         {item.title}
                                     </Typography>
-                                    <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.6 }}>
+                                </Stack>
+
+                                <Box sx={{ width: { md: "50%" }, display: "flex", alignItems: "center", gap: 4 }}>
+                                    <Box
+                                        sx={{
+                                            p: 2,
+                                            borderRadius: "50%",
+                                            bgcolor: "rgba(255,255,255,0.05)",
+                                            color: "#0062cc",
+                                            display: { xs: "none", md: "flex" }
+                                        }}
+                                    >
+                                        {item.icon}
+                                    </Box>
+                                    <Typography variant="h6" sx={{ fontWeight: 300, lineHeight: 1.6, color: "grey.300" }}>
                                         {item.description}
                                     </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                                </Box>
+                            </Stack>
+                        </Box>
                     ))}
-                </Grid>
+                </Stack>
             </Container>
         </Box>
     );

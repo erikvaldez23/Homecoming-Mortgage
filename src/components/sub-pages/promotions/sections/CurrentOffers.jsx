@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Container, Grid, Typography, Card, CardContent, Button, Chip } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Container, Typography, Stack, Button, Chip, Divider } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const offers = [
     {
@@ -28,83 +28,109 @@ const offers = [
 ];
 
 const CurrentOffers = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+
     return (
-        <Box sx={{ py: 15, bgcolor: "background.default" }}>
+        <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
             <Container maxWidth="lg">
-                <Typography variant="h2" align="center" sx={{ fontWeight: 800, mb: 10 }}>
-                    Active Promotions
-                </Typography>
+                <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                    <Typography
+                        variant="h2"
+                        sx={{
+                            fontWeight: 800,
+                            fontSize: { xs: "3rem", md: "4rem" },
+                            letterSpacing: "-0.03em",
+                            background: "linear-gradient(90deg, #fff, #90caf9)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}
+                    >
+                        Active Promotions.
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "grey.500", display: { xs: "none", md: "block" } }}>
+                        Limited time offers tailored for you.
+                    </Typography>
+                </Stack>
 
-                <Grid container spacing={4}>
+                <Stack spacing={0}>
                     {offers.map((offer, index) => (
-                        <Grid item xs={12} md={4} key={index}>
-                            <Card
-                                sx={{
-                                    height: "100%",
-                                    bgcolor: "background.paper",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    position: "relative",
-                                    overflow: "visible",
-                                    borderRadius: 4,
-                                    mt: 2,
-                                    transition: "transform 0.3s ease",
-                                    "&:hover": {
-                                        transform: "translateY(-5px)",
-                                    }
-                                }}
+                        <Box
+                            key={index}
+                            onMouseEnter={() => setActiveIndex(index)}
+                            sx={{
+                                borderBottom: "1px solid rgba(255,255,255,0.1)",
+                                py: 6,
+                                cursor: "pointer",
+                                transition: "all 0.4s ease",
+                                opacity: activeIndex === index ? 1 : 0.5,
+                                "&:hover": {
+                                    opacity: 1,
+                                    bgcolor: "rgba(255,255,255,0.02)",
+                                    pl: 2
+                                }
+                            }}
+                        >
+                            <Stack
+                                direction={{ xs: "column", md: "row" }}
+                                alignItems={{ xs: "flex-start", md: "center" }}
+                                justifyContent="space-between"
+                                spacing={4}
                             >
-                                {/* Floating Icon */}
-                                <Box
-                                    sx={{
-                                        position: "absolute",
-                                        top: -20,
-                                        left: 30,
-                                        bgcolor: offer.color,
-                                        color: "#fff",
-                                        p: 2,
-                                        borderRadius: 3,
-                                        boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
-                                    }}
-                                >
-                                    <LocalOfferIcon />
-                                </Box>
-
-                                <CardContent sx={{ pt: 8, pb: 4, px: 4, flexGrow: 1 }}>
-                                    <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
-                                        {offer.title}
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ color: "text.secondary", mb: 3 }}>
-                                        {offer.description}
-                                    </Typography>
-
-                                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3, color: "text.secondary", fontSize: "0.875rem" }}>
-                                        <CalendarMonthIcon fontSize="small" />
-                                        {offer.expiry}
-                                    </Box>
-
+                                {/* Left: Title & Badge */}
+                                <Box sx={{ width: { md: "35%" } }}>
+                                    <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
+                                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
+                                            {offer.title}
+                                        </Typography>
+                                    </Stack>
                                     <Chip
-                                        label={`Code: ${offer.code}`}
+                                        label={offer.code}
+                                        size="small"
                                         sx={{
-                                            bgcolor: "rgba(255,255,255,0.05)",
-                                            border: "1px dashed",
-                                            borderColor: "text.secondary",
-                                            color: "text.primary",
-                                            width: "100%",
-                                            borderRadius: 2
+                                            bgcolor: "rgba(255,255,255,0.1)",
+                                            color: offer.color,
+                                            fontWeight: 600,
+                                            border: "1px solid",
+                                            borderColor: offer.color,
+                                            mt: 1
                                         }}
                                     />
-                                </CardContent>
+                                </Box>
 
-                                <Box sx={{ p: 4, pt: 0 }}>
-                                    <Button variant="contained" fullWidth color="primary" sx={{ borderRadius: 50 }}>
+                                {/* Middle: Description */}
+                                <Box sx={{ width: { md: "45%" } }}>
+                                    <Typography variant="body1" sx={{ color: "grey.300", lineHeight: 1.6, fontSize: "1.1rem", mb: 1 }}>
+                                        {offer.description}
+                                    </Typography>
+                                    <Typography variant="caption" sx={{ color: "grey.600", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                                        {offer.expiry}
+                                    </Typography>
+                                </Box>
+
+                                {/* Right: Action */}
+                                <Box sx={{ width: { md: "20%" }, textAlign: "right" }}>
+                                    <Button
+                                        endIcon={<ArrowForwardIcon />}
+                                        sx={{
+                                            color: "#fff",
+                                            borderColor: "rgba(255,255,255,0.3)",
+                                            borderRadius: 50,
+                                            px: 3,
+                                            py: 1,
+                                            "&:hover": {
+                                                bgcolor: offer.color,
+                                                borderColor: offer.color
+                                            }
+                                        }}
+                                        variant="outlined"
+                                    >
                                         Claim Offer
                                     </Button>
                                 </Box>
-                            </Card>
-                        </Grid>
+                            </Stack>
+                        </Box>
                     ))}
-                </Grid>
+                </Stack>
             </Container>
         </Box>
     );

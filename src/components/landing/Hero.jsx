@@ -14,7 +14,8 @@ const Hero = () => {
                 display: 'flex',
                 alignItems: { xs: 'center', md: 'center' }, // Centered layout like Homely
                 justifyContent: 'center', // Centered layout
-                backgroundImage: 'url(/landing/hero-bg.png)',
+                // backgroundImage: 'url(/landing/hero-bg.png)',
+                background: '#050505',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -31,7 +32,7 @@ const Hero = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)', // Dark overlay
+                    // background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)', // Dark overlay
                     zIndex: 1,
                 }}
             />
@@ -114,7 +115,7 @@ const Hero = () => {
                 sx={{
                     position: { xs: 'relative', md: 'absolute' },
                     bottom: { xs: 'auto', md: '40px' },
-                    right: { xs: 'auto', md: '40px' },
+                    right: { xs: 'auto', md: '20px' },
                     mt: { xs: 8, md: 0 },
                     bgcolor: 'rgba(2, 13, 28, 0.8)', // Deep Navy transparency
                     backdropFilter: 'blur(12px)',

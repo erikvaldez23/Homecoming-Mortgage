@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Container, Grid, Typography, Stack, Divider } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Stack } from '@mui/material';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
@@ -7,95 +7,131 @@ import DomainAddOutlinedIcon from '@mui/icons-material/DomainAddOutlined';
 
 const servicesData = [
     {
+        id: '01',
         title: 'Home Purchasing',
-        description: 'Find your dream home.',
-        icon: <HomeWorkOutlinedIcon sx={{ fontSize: 60 }} />,
+        description: 'Find your dream home with clarity and confidence.',
+        icon: <HomeWorkOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
+        id: '02',
         title: 'Refinancing',
-        description: 'Lower your monthly payments.',
-        icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 60 }} />,
+        description: 'Optimize your mortgage to fit your life goals.',
+        icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
+        id: '03',
         title: 'Investment Properties',
-        description: 'Build your real estate portfolio.',
-        icon: <DomainAddOutlinedIcon sx={{ fontSize: 60 }} />,
+        description: 'Build wealth through strategic real estate assets.',
+        icon: <DomainAddOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
-        title: 'Commercial Mortgages',
-        description: 'Expand your business horizons.',
-        icon: <ApartmentOutlinedIcon sx={{ fontSize: 60 }} />,
+        id: '04',
+        title: 'Commercial Lending',
+        description: 'Expand your business horizons with scalable capital.',
+        icon: <ApartmentOutlinedIcon sx={{ fontSize: 32 }} />,
     }
 ];
 
 const Services = () => {
-    return (
-        <Box sx={{ py: 15, bgcolor: 'background.default', textAlign: 'center' }}>
-            <Container maxWidth="xl">
-                <Typography
-                    variant="h2"
-                    sx={{
-                        fontWeight: 800,
-                        mb: 8,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        background: 'linear-gradient(90deg, #fff, #aabbd1)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        textShadow: '0 0 20px rgba(0, 98, 204, 0.3)'
-                    }}
-                >
-                    Our Blueprint for Your Future
-                </Typography>
+    const [activeIndex, setActiveIndex] = useState(0);
 
-                <Grid container spacing={4} justifyContent="center" sx={{ mb: 10 }}>
+    return (
+        <Box sx={{ py: 20, bgcolor: '#050505', overflow: 'hidden', color: '#fff' }}>
+            <Container maxWidth="lg">
+                {/* Header */}
+                <Box sx={{ mb: 12, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                    <Typography
+                        variant="h1"
+                        sx={{
+                            fontWeight: 800,
+                            fontSize: { xs: "12vw", md: "8rem" },
+                            lineHeight: 0.9,
+                            color: "#0062cc",
+                            letterSpacing: "-0.04em",
+                            textTransform: "capitalize",
+                            background: "linear-gradient(135deg, #fff 0%, #90caf9 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            mb: 4
+                        }}
+                    >
+                        Our Blueprint.
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "grey.400", maxWidth: "800px", fontSize: "1.2rem", lineHeight: 1.6 }}>
+                        With years of experience, we offer the most competitive pricing in the mortgage industry. Our aim is to handle all aspects of your loan, from the pre-approval process through your closing, and keep all parties updated throughout. We are fully transparent in everything we do, and our objective is to not only get our clients the best deal, but to lessen the burden of the mortgage process.
+                    </Typography>
+                </Box>
+
+                <Stack spacing={0}>
                     {servicesData.map((service, index) => (
-                        <Grid item xs={12} sm={6} md={3} key={index}>
-                            <Stack alignItems="center" spacing={2}>
-                                <Box
-                                    sx={{
-                                        color: 'primary.main',
-                                        p: 2,
-                                        borderRadius: '50%',
-                                        border: '1px solid rgba(0, 98, 204, 0.3)',
-                                        bgcolor: 'rgba(0, 98, 204, 0.05)',
-                                        transition: 'all 0.3s ease',
-                                        '&:hover': {
-                                            transform: 'scale(1.1)',
-                                            bgcolor: 'rgba(0, 98, 204, 0.1)',
-                                            boxShadow: '0 0 20px rgba(0, 98, 204, 0.4)'
-                                        }
-                                    }}
-                                >
-                                    {service.icon}
+                        <Box
+                            key={index}
+                            onMouseEnter={() => setActiveIndex(index)}
+                            sx={{
+                                borderBottom: "1px solid rgba(255,255,255,0.1)",
+                                py: 6,
+                                cursor: "pointer",
+                                transition: "all 0.4s ease",
+                                opacity: activeIndex === index ? 1 : 0.4,
+                                "&:hover": {
+                                    opacity: 1,
+                                    bgcolor: "rgba(255,255,255,0.02)",
+                                    pl: 2
+                                }
+                            }}
+                        >
+                            <Stack
+                                direction={{ xs: "column", md: "row" }}
+                                alignItems={{ xs: "flex-start", md: "center" }}
+                                justifyContent="space-between"
+                                spacing={4}
+                            >
+                                {/* Left: Number & Title */}
+                                <Box sx={{ width: { md: "40%" } }}>
+                                    <Stack direction="row" alignItems="flex-start" spacing={3}>
+                                        <Typography
+                                            variant="h3"
+                                            sx={{
+                                                fontWeight: 800,
+                                                color: "rgba(255,255,255,0.1)",
+                                                lineHeight: 0.8,
+                                                fontSize: "3rem",
+                                                fontFamily: 'monospace'
+                                            }}
+                                        >
+                                            {service.id}
+                                        </Typography>
+                                        <Typography variant="h4" sx={{ fontWeight: 700, mt: 0.5 }}>
+                                            {service.title}
+                                        </Typography>
+                                    </Stack>
                                 </Box>
-                                <Box>
-                                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff', mb: 0.5 }}>
-                                        {service.title}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+
+                                {/* Middle: Description */}
+                                <Box sx={{ width: { md: "45%" } }}>
+                                    <Typography variant="body1" sx={{ color: "grey.400", lineHeight: 1.6, fontSize: "1.2rem" }}>
                                         {service.description}
                                     </Typography>
                                 </Box>
+
+                                {/* Right: Icon */}
+                                <Box sx={{ width: { md: "15%" }, display: "flex", justifyContent: "flex-end" }}>
+                                    <Box
+                                        sx={{
+                                            p: 2,
+                                            borderRadius: "50%",
+                                            color: activeIndex === index ? "#0062cc" : "grey.600",
+                                            transition: "all 0.3s ease",
+                                            transform: activeIndex === index ? "scale(1.1)" : "scale(1)"
+                                        }}
+                                    >
+                                        {service.icon}
+                                    </Box>
+                                </Box>
                             </Stack>
-                        </Grid>
+                        </Box>
                     ))}
-                </Grid>
-
-                <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', width: '60%', mx: 'auto', mb: 8 }} />
-
-                <Typography
-                    variant="h5"
-                    sx={{
-                        fontStyle: 'italic',
-                        color: 'text.secondary',
-                        fontWeight: 300,
-                        maxWidth: '800px',
-                        mx: 'auto'
-                    }}
-                >
-                    "The best way to predict your financial future is to create it."
-                </Typography>
+                </Stack>
             </Container>
         </Box>
     );
