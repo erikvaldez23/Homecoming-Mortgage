@@ -88,9 +88,9 @@ const Footer = () => {
           {/* Column 3: Legal & Policy */}
           <Grid item xs={12} md={4} lg={3}>
             <Box component="a" href="#" sx={linkStyles}>Privacy Policy</Box>
-            <Box component="a" href="#" sx={linkStyles}>Accessibility Statement</Box>
-            <Box component="a" href="#" sx={linkStyles}>Terms & Conditions</Box>
-            <Box component="a" href="#" sx={linkStyles}>Refund Policy</Box>
+            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
+            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
+            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
           </Grid>
         </Grid>
 
