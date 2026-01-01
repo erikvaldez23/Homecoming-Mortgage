@@ -47,7 +47,7 @@ const OurStory = () => {
                         >
                             <Box
                                 component="img"
-                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80"
+                                src="/placeholder.jpg"
                                 alt="Team meeting"
                                 sx={{
                                     width: "100%",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
-import ContactForm from "../../global/ContactForm";
+import ContactDetails from "./sections/ContactDetails";
 
 const Contact = () => {
     return (
@@ -23,7 +23,7 @@ const Contact = () => {
                         variant="h1"
                         sx={{
                             fontWeight: 800,
-                            fontSize: { xs: "12vw", md: "11vw" },
+                            fontSize: { xs: "12vw", md: "9vw" },
                             lineHeight: 0.9,
                             mb: 4,
                             color: "#0062cc",
@@ -49,18 +49,7 @@ const Contact = () => {
             </Box>
 
             {/* Contact Content */}
-            <Box sx={{ py: 10, bgcolor: "#0a0a0a" }}>
-                <Container maxWidth="lg">
-                    <Grid container spacing={8} justifyContent="center">
-                        <Grid item xs={12} md={8}>
-                            {/* Reusing the global contact form, wrapped in a styled box */}
-                            <Box sx={{ p: { xs: 3, md: 6 }, bgcolor: "background.paper", borderRadius: 8, border: "1px solid rgba(255,255,255,0.05)" }}>
-                                <ContactForm />
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
+            <ContactDetails />
         </Box>
     );
 };

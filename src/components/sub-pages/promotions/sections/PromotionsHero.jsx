@@ -20,7 +20,7 @@ const PromotionsHero = () => {
                     variant="h1"
                     sx={{
                         fontWeight: 800,
-                        fontSize: { xs: "12vw", md: "11vw" },
+                        fontSize: { xs: "12vw", md: "9vw" },
                         lineHeight: 0.9,
                         mb: 4,
                         color: "#0062cc",

@@ -1,139 +1,139 @@
-import React from 'react';
-import { Box, Container, Grid, Typography, Card, CardContent, Button, Stack, Chip } from '@mui/material';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Stack } from '@mui/material';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
+import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
 import VillaOutlinedIcon from '@mui/icons-material/VillaOutlined';
-import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
-import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 
-const products = [
+const loanProductsData = [
     {
-        title: 'Conventional',
-        category: 'Standard',
-        icon: <HouseOutlinedIcon fontSize="large" />,
-        description: 'Flexible terms for strong credit profiles.',
-    },
-    {
+        id: '01',
         title: 'FHA Loans',
-        category: 'First-Time',
-        icon: <ApartmentOutlinedIcon fontSize="large" />,
-        description: 'Low down payment options for new buyers.',
+        description: 'Perfect for first-time homebuyers with lower credit scores or smaller down payments. Secure your future with flexible requirements.',
+        icon: <AccountBalanceOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
+        id: '02',
         title: 'VA Loans',
-        category: 'Military',
-        icon: <VillaOutlinedIcon fontSize="large" />,
-        description: '$0 down for Veterans and active military.',
+        description: 'Exclusive benefits for veterans and active military. Enjoy zero down payment options and competitive interest rates as a thank you for your service.',
+        icon: <MilitaryTechOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
+        id: '03',
+        title: 'Conventional',
+        description: 'Standard mortgage loans for borrowers with good credit. Offers great rates and flexible terms for your primary or investment property.',
+        icon: <GavelOutlinedIcon sx={{ fontSize: 32 }} />,
+    },
+    {
+        id: '04',
         title: 'Jumbo Loans',
-        category: 'Luxury',
-        icon: <HouseOutlinedIcon fontSize="large" />,
-        description: 'For properties exceeding loan limits.',
-    },
-    {
-        title: 'USDA Loans',
-        category: 'Rural',
-        icon: <VillaOutlinedIcon fontSize="large" />,
-        description: 'Zero down payment for eligible rural areas.',
-    },
-    {
-        title: 'Refinance',
-        category: 'Savings',
-        icon: <ApartmentOutlinedIcon fontSize="large" />,
-        description: 'Lower your rate or cash out equity.',
-    },
+        description: 'For luxury properties that exceed conforming loan limits. Get the financing you need for your high-value dream home.',
+        icon: <VillaOutlinedIcon sx={{ fontSize: 32 }} />,
+    }
 ];
 
 const LoanProducts = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+
     return (
-        <Box sx={{ py: 15, bgcolor: 'background.default' }}>
+        <Box sx={{ py: 20, bgcolor: '#0a0a0a', overflow: 'hidden', color: '#fff' }}>
             <Container maxWidth="lg">
-                <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" mb={8}>
-                    <Box>
-                        <Typography variant="h3" sx={{ fontWeight: 800, mb: 1 }}>
-                            Loan Products
-                        </Typography>
-                        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                            Options tailored to your specific needs.
-                        </Typography>
-                    </Box>
-                    <Button variant="outlined" sx={{ mt: { xs: 3, sm: 0 }, borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}>
-                        View All Options
-                    </Button>
-                </Stack>
+                {/* Header */}
+                <Box sx={{ mb: 12, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                    <Typography
+                        variant="h1"
+                        sx={{
+                            fontWeight: 800,
+                            fontSize: { xs: "12vw", md: "8rem" },
+                            lineHeight: 0.9,
+                            color: "#0062cc",
+                            letterSpacing: "-0.04em",
+                            textTransform: "capitalize",
+                            background: "linear-gradient(135deg, #fff 0%, #90caf9 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            mb: 4
+                        }}
+                    >
+                        Our Products.
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "grey.400", maxWidth: "800px", fontSize: "1.2rem", lineHeight: 1.6 }}>
+                        We offer a comprehensive range of loan products tailored to meet your unique needs. Whether you're buying your first home, upgrading to a luxury estate, or investing in your future, we have the right solution for you.
+                    </Typography>
+                </Box>
 
-                <Grid container spacing={4}>
-                    {products.map((product, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <Card
-                                sx={{
-                                    height: '100%',
-                                    bgcolor: 'background.paper',
-                                    borderRadius: 6, // Homely style
-                                    border: '1px solid rgba(255,255,255,0.05)',
-                                    transition: 'all 0.3s ease',
-                                    position: 'relative',
-                                    overflow: 'visible',
-                                    '&:hover': {
-                                        transform: 'translateY(-8px)',
-                                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-                                        '& .product-icon': {
-                                            transform: 'scale(1.1) rotate(5deg)',
-                                            color: 'primary.main'
-                                        }
-                                    }
-                                }}
-                            >
-                                {/* Image/Icon Area Placeholder */}
-                                <Box
-                                    sx={{
-                                        height: 200,
-                                        bgcolor: 'rgba(255,255,255,0.03)',
-                                        borderRadius: '24px 24px 0 0',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        color: 'text.secondary',
-                                        position: 'relative'
-                                    }}
-                                >
-                                    <Chip
-                                        label={product.category}
-                                        size="small"
-                                        sx={{
-                                            position: 'absolute',
-                                            top: 20,
-                                            left: 20,
-                                            bgcolor: 'rgba(0,0,0,0.4)',
-                                            backdropFilter: 'blur(4px)',
-                                            color: '#fff',
-                                            fontWeight: 600
-                                        }}
-                                    />
-                                    <Box className="product-icon" sx={{ transition: 'all 0.3s ease' }}>
-                                        {product.icon}
-                                    </Box>
-                                </Box>
+                {/* Content - Horizontal Layout with Vertical Dividers */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        borderTop: { xs: 'none', md: "1px solid rgba(255,255,255,0.1)" },
+                        borderBottom: { xs: 'none', md: "1px solid rgba(255,255,255,0.1)" },
+                    }}
+                >
+                    {loanProductsData.map((product, index) => (
+                        <Box
+                            key={index}
+                            onMouseEnter={() => setActiveIndex(index)}
+                            sx={{
+                                flex: 1,
+                                position: 'relative',
+                                p: 4,
+                                cursor: "pointer",
+                                transition: "all 0.4s ease",
+                                borderRight: { xs: 'none', md: "1px solid rgba(255,255,255,0.1)" },
+                                borderBottom: { xs: "1px solid rgba(255,255,255,0.1)", md: 'none' },
+                                '&:last-child': {
+                                    borderRight: 'none',
+                                    borderBottom: 'none'
+                                },
+                                // opacity: activeIndex === index ? 1 : 0.4,
+                                "&:hover": {
+                                    opacity: 1,
+                                    bgcolor: "rgba(255,255,255,0.02)",
+                                }
+                            }}
+                        >
+                            <Stack spacing={4} height="100%" justifyContent="space-between">
+                                <Box>
+                                    <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 3 }}>
+                                        <Typography
+                                            variant="h3"
+                                            sx={{
+                                                fontWeight: 800,
+                                                color: "rgba(255,255,255,0.1)",
+                                                lineHeight: 0.8,
+                                                fontSize: "3rem",
+                                                fontFamily: 'monospace'
+                                            }}
+                                        >
+                                            {product.id}
+                                        </Typography>
+                                        <Box
+                                            sx={{
+                                                p: 1,
+                                                borderRadius: "50%",
+                                                color: activeIndex === index ? "#0062cc" : "grey.600",
+                                                transition: "all 0.3s ease",
+                                                transform: activeIndex === index ? "scale(1.1)" : "scale(1)"
+                                            }}
+                                        >
+                                            {product.icon}
+                                        </Box>
+                                    </Stack>
 
-                                <CardContent sx={{ p: 4 }}>
-                                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
+                                    <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, fontSize: '1.5rem' }}>
                                         {product.title}
                                     </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3 }}>
+
+                                    <Typography variant="body1" sx={{ color: "grey.400", lineHeight: 1.6 }}>
                                         {product.description}
                                     </Typography>
-                                    <Button
-                                        endIcon={<ArrowOutwardIcon />}
-                                        sx={{ p: 0, color: '#fff', '&:hover': { bgcolor: 'transparent', color: 'primary.main' } }}
-                                        disableRipple
-                                    >
-                                        View Details
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                                </Box>
+                            </Stack>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
             </Container>
         </Box>
     );

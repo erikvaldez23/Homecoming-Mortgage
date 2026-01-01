@@ -72,7 +72,7 @@ const Services = () => {
                                 py: 6,
                                 cursor: "pointer",
                                 transition: "all 0.4s ease",
-                                opacity: activeIndex === index ? 1 : 0.4,
+                                // opacity: activeIndex === index ? 1 : 0.4,
                                 "&:hover": {
                                     opacity: 1,
                                     bgcolor: "rgba(255,255,255,0.02)",
