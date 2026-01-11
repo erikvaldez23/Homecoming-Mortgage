@@ -85,7 +85,7 @@ function App() {
                   <Services />
                   {/* <About /> */}
                   <LoanProducts />
-                  <Testimonials />
+                  {/* <Testimonials /> */}
                   <CTA />
                 </>
               }

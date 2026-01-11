@@ -44,7 +44,7 @@ const Services = () => {
                         variant="h1"
                         sx={{
                             fontWeight: 800,
-                            fontSize: { xs: "12vw", md: "8rem" },
+                            fontSize: { xs: "min(12vw, 4rem)", md: "8rem" }, // Cap mobile font size
                             lineHeight: 0.9,
                             color: "#0062cc",
                             letterSpacing: "-0.04em",

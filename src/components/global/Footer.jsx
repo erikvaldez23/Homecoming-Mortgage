@@ -102,7 +102,7 @@ const Footer = () => {
               fontSize: { xs: "8vw", md: "9vw" }, // Reduced to fit "Homecoming Mortgage"
               fontWeight: 400,
               lineHeight: 1.5,
-              whiteSpace: "nowrap",
+              whiteSpace: "normal", // Allow wrapping on small screens
               color: BRAND_BLUE,
               fontFamily: '"Inter", sans-serif', // Ensure clean sans-serif
               letterSpacing: "-0.04em",

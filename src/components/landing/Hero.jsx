@@ -9,7 +9,7 @@ const Hero = () => {
         <Box
             sx={{
                 position: 'relative',
-                height: '100vh',
+                minHeight: '100dvh', // Dynamic viewport height for mobile
                 width: '100vw',
                 display: 'flex',
                 alignItems: { xs: 'center', md: 'center' }, // Centered layout like Homely
@@ -22,6 +22,7 @@ const Hero = () => {
                 overflow: 'hidden',
                 color: '#fff',
                 textAlign: 'left',
+                pt: { xs: 8, md: 0 } // Add padding top for mobile to prevent overlap with fixed header
             }}
         >
             {/* Overlay */}
@@ -58,7 +59,7 @@ const Hero = () => {
                     variant="h1"
                     sx={{
                         fontFamily: 'Inter, sans-serif',
-                        fontSize: { xs: '3.5rem', md: '5rem' },
+                        fontSize: { xs: 'clamp(2.5rem, 8vw, 3.5rem)', md: '5rem' }, // Responsive font size
                         fontWeight: 800,
                         lineHeight: 1.1,
                         mb: 4,
@@ -113,24 +114,30 @@ const Hero = () => {
             <Paper
                 elevation={0}
                 sx={{
-                    position: { xs: 'relative', md: 'absolute' },
-                    bottom: { xs: 'auto', md: '40px' },
-                    right: { xs: 'auto', md: '20px' },
-                    mt: { xs: 8, md: 0 },
-                    bgcolor: 'rgba(2, 13, 28, 0.8)', // Deep Navy transparency
+                    position: 'absolute', // Always absolute to stay at bottom/out of way
+                    bottom: { xs: '20px', md: '40px' },
+                    right: { xs: '50%', md: '20px' },
+                    transform: { xs: 'translateX(50%)', md: 'none' }, // Center on mobile
+                    width: { xs: '95%', sm: 'auto', md: 'auto' }, // Wide on mobile
+                    mt: 0,
+                    bgcolor: { xs: 'rgba(2, 13, 28, 0.9)', md: 'rgba(2, 13, 28, 0.8)' },
                     backdropFilter: 'blur(12px)',
                     color: '#fff',
                     borderRadius: 4,
-                    p: 4,
+                    p: { xs: 2, md: 4 }, // Reduce padding on mobile
                     display: 'flex',
-                    flexDirection: { xs: 'column', sm: 'row' },
+                    flexDirection: 'row', // Always row
                     alignItems: 'center',
-                    gap: 4,
+                    justifyContent: { xs: 'space-around', md: 'flex-start' }, // Spread on mobile
+                    gap: { xs: 1, md: 4 },
                     zIndex: 2,
                     border: '1px solid rgba(255,255,255,0.1)',
-                    maxWidth: { xs: '90%', md: 'auto' },
-                    mx: { xs: 'auto', md: 0 },
-                    cursor: 'default'
+                    maxWidth: { xs: '100%', md: 'auto' },
+                    mx: 0,
+                    cursor: 'default',
+                    whiteSpace: 'nowrap',
+                    overflowX: 'auto', // Scroll if too small
+                    '::-webkit-scrollbar': { display: 'none' } // Hide scrollbar
                 }}
             >
                 {/* Call */}
@@ -148,8 +155,8 @@ const Hero = () => {
                         '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
                     }}
                 >
-                    <PhoneInTalkOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Call Us</Typography>
+                    <PhoneInTalkOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Call Us</Typography>
                 </Box>
 
                 {/* Email */}
@@ -167,8 +174,8 @@ const Hero = () => {
                         '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
                     }}
                 >
-                    <EmailOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Email Us</Typography>
+                    <EmailOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Email Us</Typography>
                 </Box>
 
                 {/* Schedule */}
@@ -186,12 +193,18 @@ const Hero = () => {
                         '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
                     }}
                 >
-                    <CalendarMonthOutlinedIcon sx={{ fontSize: '1.8rem', color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>Schedule</Typography>
+                    <CalendarMonthOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Schedule</Typography>
                 </Box>
 
-                {/* Main CTA Text */}
-                <Box sx={{ ml: { sm: 2 }, textAlign: { xs: 'center', sm: 'left' }, borderLeft: { sm: '1px solid rgba(255,255,255,0.1)' }, pl: { sm: 4 } }}>
+                {/* Main CTA Text - Hide on very small screens if needed, or scale down */}
+                <Box sx={{
+                    ml: { sm: 2 },
+                    textAlign: { xs: 'center', sm: 'left' },
+                    borderLeft: { sm: '1px solid rgba(255,255,255,0.1)' },
+                    pl: { sm: 4 },
+                    display: { xs: 'none', sm: 'block' } // Hide text block on extra small mobile to fit icons in row
+                }}>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
                         Free<br />Consultation
                     </Typography>
