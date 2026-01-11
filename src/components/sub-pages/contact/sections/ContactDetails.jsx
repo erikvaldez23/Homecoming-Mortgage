@@ -1,45 +1,102 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Grid, TextField, Button, Stack, MenuItem } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
+import { motion } from "framer-motion";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import HomeIcon from '@mui/icons-material/Home';
 
-// Custom styled components
-const StyledInput = styled(TextField)({
+// --- Styled Components ---
+
+const GlassCard = styled(motion.div)({
+    background: "rgba(255, 255, 255, 0.03)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "24px",
+    border: "1px solid rgba(255, 255, 255, 0.08)",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+    overflow: "hidden",
+});
+
+const GlowingInput = styled(TextField)({
     "& .MuiOutlinedInput-root": {
         borderRadius: "12px",
-        backgroundColor: "#fff",
-        "& fieldset": {
-            borderColor: "#e2e8f0",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        border: "1px solid rgba(255, 255, 255, 0.05)",
+        color: "#fff",
+        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        "& fieldset": { border: "none" },
+        "&:hover": {
+            backgroundColor: "rgba(255, 255, 255, 0.05)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
         },
-        "&:hover fieldset": {
-            borderColor: "#cbd5e1",
-        },
-        "&.Mui-focused fieldset": {
-            borderColor: "#10b981", // Green accent
+        "&.Mui-focused": {
+            backgroundColor: "rgba(0, 98, 204, 0.05)",
+            border: "1px solid #0062cc",
+            boxShadow: "0 0 15px rgba(0, 98, 204, 0.3), inset 0 0 10px rgba(0, 98, 204, 0.1)",
+            transform: "translateY(-2px)"
         },
     },
+    "& .MuiInputLabel-root": {
+        color: "rgba(255, 255, 255, 0.4)",
+        fontFamily: '"Inter", sans-serif',
+    },
     "& .MuiInputLabel-root.Mui-focused": {
-        color: "#10b981",
+        color: "#0062cc",
+        fontWeight: 600
+    },
+    "& .MuiInputBase-input": {
+        color: "#fff",
+        fontWeight: 500,
+    },
+    "& .MuiSelect-icon": {
+        color: "rgba(255, 255, 255, 0.5)",
     }
 });
 
-const SendButton = styled(Button)({
-    backgroundColor: "#10b981",
+const MagneticButton = styled(motion.button)({
+    background: "linear-gradient(135deg, #0062cc 0%, #004599 100%)",
     color: "#fff",
-    borderRadius: "24px",
-    textTransform: "none",
-    padding: "12px 32px",
+    border: "none",
+    borderRadius: "12px",
+    padding: "18px 40px",
     fontSize: "1rem",
-    fontWeight: 600,
-    boxShadow: "0 4px 6px -1px rgba(16, 185, 129, 0.4)",
-    "&:hover": {
-        backgroundColor: "#059669",
-        boxShadow: "0 10px 15px -3px rgba(16, 185, 129, 0.5)",
+    fontWeight: 700,
+    letterSpacing: "0.05em",
+    textTransform: "uppercase",
+    cursor: "pointer",
+    boxShadow: "0 10px 30px rgba(0, 98, 204, 0.4)",
+    position: "relative",
+    overflow: "hidden",
+    outline: "none",
+    "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: "-100%",
+        width: "100%",
+        height: "100%",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+        transition: "left 0.5s ease",
+    },
+    "&:hover::before": {
+        left: "100%",
     },
 });
+
+// --- Animations ---
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const ContactDetails = () => {
     const [formData, setFormData] = useState({
@@ -55,156 +112,152 @@ const ContactDetails = () => {
     };
 
     return (
-        <Box sx={{ py: 10, bgcolor: "#fff", color: "#1e293b" }}>
-            <Container maxWidth="lg">
-                {/* Header Section */}
-                <Box sx={{ textAlign: "center", mb: 8 }}>
-                    <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ mb: 2 }}>
-                        <HomeIcon sx={{ color: "#10b981" }} />
-                        <Typography sx={{ color: "#1e293b", fontWeight: 700, fontSize: "1rem" }}>
-                            Contact us
-                        </Typography>
-                    </Stack>
-                    <Typography variant="h2" sx={{ fontWeight: 800, fontSize: { xs: "2.5rem", md: "3.5rem" }, mb: 3, letterSpacing: "-0.02em" }}>
-                        Have questions? ready to help!
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: "#64748b", maxWidth: "800px", mx: "auto", fontSize: "1.1rem" }}>
-                        Looking for your dream home or ready to sell? Our expert team offers personalized guidance and market expertise tailored to you.
-                    </Typography>
-                </Box>
+        <Box sx={{
+            pt: 7,
+            pb: 15,
+            bgcolor: "#0a0a0a",
+            color: "#fff",
+            position: "relative",
+            overflow: "hidden",
+        }}>
+            <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+                <Grid container spacing={8} alignItems="center">
 
-                {/* Main Content Card */}
-                <Box sx={{
-                    bgcolor: "#fff",
-                    borderRadius: 4,
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                    border: "1px solid #f1f5f9",
-                    overflow: "hidden",
-                    display: "grid",
-                    gridTemplateColumns: { xs: "1fr", md: "40% 60%" }
-                }}>
-                    {/* Left Column: Contact Info */}
-                    <Box sx={{ position: "relative" }}>
-                        {/* Background Image with Overlay */}
-                        <Box sx={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundImage: `url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80')`, // Placeholder luxury home
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            "::after": {
-                                content: '""',
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                backgroundColor: "rgba(0, 0, 0, 0.6)", // Dark overlay
-                            }
-                        }} />
+                    {/* Left Column: Visual & Info */}
+                    <Grid item xs={12} md={5}>
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+                            <motion.div variants={itemVariants}>
+                                {/* <Typography variant="h1" sx={{
+                                    fontWeight: 900,
+                                    fontSize: { xs: "3.5rem", md: "5rem" },
+                                    lineHeight: 0.9,
+                                    mb: 3,
+                                    background: "linear-gradient(135deg, #fff 0%, #a5b4fc 100%)",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                    letterSpacing: "-0.04em",
+                                }}>
+                                    Let's<br />Talk.
+                                </Typography> */}
+                            </motion.div>
 
-                        {/* Content */}
-                        <Box sx={{ position: "relative", zIndex: 1, p: 6, height: "100%", display: "flex", flexDirection: "column", color: "#fff" }}>
-                            <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
-                                Contact information
-                            </Typography>
-                            <Typography sx={{ opacity: 0.9, mb: 8, fontSize: "1.1rem" }}>
-                                Ready to find your dream home or sell your property? We're here to help!
-                            </Typography>
+                            <motion.div variants={itemVariants}>
+                                {/* <Typography sx={{
+                                    fontSize: "1.2rem",
+                                    color: "grey.400",
+                                    mb: 6,
+                                    maxWidth: "400px",
+                                    lineHeight: 1.6
+                                }}>
+                                    Ready to start your journey? We're here to help you navigate the path to your dream home.
+                                </Typography> */}
+                            </motion.div>
 
-                            <Stack spacing={4} sx={{ mt: "auto" }}>
-                                <Stack direction="row" spacing={3} alignItems="center">
-                                    <LocalPhoneOutlinedIcon sx={{ fontSize: 28 }} />
-                                    <Typography sx={{ fontSize: "1.1rem" }}>+1 0239 0310 1122</Typography>
-                                </Stack>
-                                <Stack direction="row" spacing={3} alignItems="center">
-                                    <EmailOutlinedIcon sx={{ fontSize: 28 }} />
-                                    <Typography sx={{ fontSize: "1.1rem" }}>support@homecoming.com</Typography>
-                                </Stack>
-                                <Stack direction="row" spacing={3} alignItems="center">
-                                    <LocationOnOutlinedIcon sx={{ fontSize: 28 }} />
-                                    <Typography sx={{ fontSize: "1.1rem" }}>Blane Street, Manchester</Typography>
-                                </Stack>
+                            <Stack spacing={4}>
+                                {[
+                                    { icon: <LocalPhoneOutlinedIcon />, label: "Call Us", value: "(972) 339-0630" },
+                                    { icon: <EmailOutlinedIcon />, label: "Email Us", value: "Pirouz@mortgagehmc.com" },
+                                    { icon: <LocationOnOutlinedIcon />, label: "Visit Us", value: "13601 Preston Rd. Suite 102E, Dallas, TX 75240" }
+                                ].map((item, index) => (
+                                    <motion.div key={index} variants={itemVariants} whileHover={{ x: 10, transition: { duration: 0.2 } }}>
+                                        <Stack direction="row" spacing={3} alignItems="center">
+                                            <Box sx={{
+                                                p: 1.5,
+                                                borderRadius: "12px",
+                                                background: "rgba(255,255,255,0.05)",
+                                                border: "1px solid rgba(255,255,255,0.1)",
+                                                display: "flex",
+                                                color: "#0062cc"
+                                            }}>
+                                                {item.icon}
+                                            </Box>
+                                            <Box>
+                                                <Typography variant="caption" sx={{ color: "grey.500", textTransform: "uppercase", letterSpacing: "0.1em" }}>{item.label}</Typography>
+                                                <Typography variant="h6" sx={{ fontSize: "1.1rem", fontWeight: 500 }}>{item.value}</Typography>
+                                            </Box>
+                                        </Stack>
+                                    </motion.div>
+                                ))}
                             </Stack>
-                        </Box>
-                    </Box>
+                        </motion.div>
+                    </Grid>
 
-                    {/* Right Column: Form */}
-                    <Box sx={{ p: 6 }}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={6}>
-                                <StyledInput
-                                    fullWidth
-                                    label="Name"
-                                    placeholder="Sunil Joshi"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <StyledInput
-                                    fullWidth
-                                    label="Phone number *"
-                                    placeholder=""
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <StyledInput
-                                    fullWidth
-                                    label="Email address *"
-                                    placeholder=""
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <StyledInput
-                                    select
-                                    fullWidth
-                                    label="Interested in"
-                                    name="interestedIn"
-                                    value={formData.interestedIn}
-                                    onChange={handleChange}
-                                    InputLabelProps={{ shrink: true }}
-                                >
-                                    <MenuItem value="buying">Buying a Home</MenuItem>
-                                    <MenuItem value="refinance">Refinance</MenuItem>
-                                    <MenuItem value="selling">Selling a Home</MenuItem>
-                                    <MenuItem value="investing">Real Estate Investing</MenuItem>
-                                </StyledInput>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <StyledInput
-                                    fullWidth
-                                    multiline
-                                    rows={4}
-                                    label="Message"
-                                    placeholder="Write here your message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sx={{ mt: 2 }}>
-                                <SendButton variant="contained">
-                                    Send message
-                                </SendButton>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
+                    {/* Right Column: Floating Form */}
+                    <Grid item xs={12} md={7}>
+                        <GlassCard
+                            initial={{ opacity: 0, x: 50, rotateY: 10 }}
+                            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                        >
+                            <Box sx={{ p: { xs: 4, md: 6 } }}>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} md={6}>
+                                        <GlowingInput
+                                            fullWidth
+                                            label="Your Name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <GlowingInput
+                                            fullWidth
+                                            label="Phone Number"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <GlowingInput
+                                            fullWidth
+                                            label="Email Address"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <GlowingInput
+                                            select
+                                            fullWidth
+                                            label="I'm interested in..."
+                                            name="interestedIn"
+                                            value={formData.interestedIn}
+                                            onChange={handleChange}
+                                        >
+                                            <MenuItem value="buying">Buying a Home</MenuItem>
+                                            <MenuItem value="refinance">Refinancing</MenuItem>
+                                            <MenuItem value="selling">Selling</MenuItem>
+                                            <MenuItem value="investing">Investing</MenuItem>
+                                        </GlowingInput>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <GlowingInput
+                                            fullWidth
+                                            multiline
+                                            rows={4}
+                                            label="Message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ mt: 2 }}>
+                                        <MagneticButton
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                        >
+                                            Send Message
+                                        </MagneticButton>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </GlassCard>
+                    </Grid>
+                </Grid>
             </Container>
         </Box>
     );

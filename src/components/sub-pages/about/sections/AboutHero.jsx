@@ -27,7 +27,7 @@ const AboutHero = () => {
                         letterSpacing: "-0.04em",
                     }}
                 >
-                    About Us.
+                    About Us
                 </Typography>
                 <Typography
                     variant="h5"

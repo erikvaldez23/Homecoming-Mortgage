@@ -11,9 +11,7 @@ const Promotions = () => {
             <PromotionsHero />
             <CurrentOffers />
             <PromotionsFAQ />
-            <Box sx={{ px: 2 }}>
-                <CTA />
-            </Box>
+            <CTA />
         </Box>
     );
 };

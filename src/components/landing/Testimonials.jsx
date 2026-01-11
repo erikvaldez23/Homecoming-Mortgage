@@ -8,14 +8,10 @@ import {
     Avatar,
     Rating,
     Container,
-    Button,
     useMediaQuery,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import GoogleIcon from '@mui/icons-material/Google';
 
 // Static Data for Homecoming Mortgage
@@ -51,71 +47,42 @@ const reviews = [
 ];
 
 // Fixed card heights
-const CARD_H_MOBILE = 300;
-const CARD_H_DESKTOP = 320;
+const CARD_H_MOBILE = 350;
+const CARD_H_DESKTOP = 350;
 const SLIDE_GAP = 12;
 
 /* ---------------- Card styles ---------------- */
 const baseCardSX = {
-    p: 3,
-    borderRadius: 2,
+    p: 4,
+    borderRadius: 0, // Sharper corners for blueprint feel? Or keep minimal radius
     textAlign: "left",
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    backgroundColor: "rgba(2, 13, 28, 0.6)", // Deep Navy transparency
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
+    backgroundColor: "transparent",
     border: "1px solid rgba(255,255,255,0.1)",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+    // Remove shadows and glassmorphism for consistent flat look
+    boxShadow: "none",
     color: alpha("#fff", 0.95),
-    transition: "transform 0.3s, box-shadow 0.3s, background-color 0.3s",
+    height: "100%",
 };
 
-const hoverDesktopSX = {
-    "&:hover": {
-        transform: "translateY(-8px) scale(1.02)",
-        boxShadow: "0 14px 36px rgba(0, 98, 204, 0.2)", // Blue glow
-        backgroundColor: "rgba(2, 13, 28, 0.8)",
-        borderColor: "primary.main"
-    },
-};
+// No hover effect needed as per previous requests to remove hovers
+const hoverDesktopSX = {};
 
-const secondaryText = alpha("#fff", 0.7);
+const secondaryText = alpha("#fff", 0.6);
 
 const Testimonials = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const scrollRef = React.useRef(null);
 
-    const sliderSettings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        centerMode: true,
-        centerPadding: isMobile ? "0px" : "8%",
-        adaptiveHeight: false,
-        appendDots: (dots) => (
-            <Box sx={{ textAlign: "center", mt: 2 }}>
-                <ul style={{ margin: "0px", padding: "0px" }}>{dots}</ul>
-            </Box>
-        ),
-        customPaging: (i) => (
-            <Box
-                component="div"
-                sx={{
-                    width: "10px",
-                    height: "10px",
-                    backgroundColor: "rgba(255,255,255,0.3)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                    margin: "0 5px",
-                    transition: "background-color 0.3s ease",
-                    "&.slick-active": { backgroundColor: "primary.main" } // Active dot blue
-                }}
-            />
-        ),
+    const handleScroll = () => {
+        if (scrollRef.current) {
+            const { scrollLeft, clientWidth } = scrollRef.current;
+            const scrollIndex = Math.round(scrollLeft / clientWidth);
+            setActiveIndex(scrollIndex);
+        }
     };
 
     const containerVariants = {
@@ -129,59 +96,169 @@ const Testimonials = () => {
     };
 
     return (
-        <Box id="reviews" sx={{ py: isMobile ? 8 : 12, textAlign: "center", bgcolor: "#0a0a0a" }}>
-            <Container maxWidth="xl">
-                <Box textAlign="center" mb={8}>
-                    <Typography variant="h2" sx={{ fontWeight: 800 }}>
-                        What our clients say.
+        <Box id="reviews" sx={{ py: 20, textAlign: "center", bgcolor: "#0a0a0a" }}>
+            <Container maxWidth="lg">
+                <Box textAlign="center" mb={12} sx={{ borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                    <Typography
+                        variant="h1"
+                        sx={{
+                            fontWeight: 800,
+                            fontSize: { xs: "min(12vw, 4rem)", md: "8rem" },
+                            lineHeight: 0.9,
+                            color: "#0062cc",
+                            letterSpacing: "-0.04em",
+                            textTransform: "capitalize",
+                            background: "linear-gradient(135deg, #fff 0%, #90caf9 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            mb: 2,
+                            textAlign: "left"
+                        }}
+                    >
+                        Success Stories.
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "grey.400", mx: "auto", fontSize: "1.2rem", lineHeight: 1.6, textAlign: "left" }}>
+                        Hear from our clients who have successfully navigated their mortgage journey with us.
                     </Typography>
                 </Box>
 
                 {
                     isMobile ? (
-                        <Box sx={{ "& .slick-slide": { padding: `0 ${SLIDE_GAP}px` }, "& .slick-list": { margin: `0 -${SLIDE_GAP}px` } }}>
-                            <Slider {...sliderSettings}>
+                        <Box>
+                            {/* CSS Scroll Snap Container for Mobile */}
+                            <Box
+                                ref={scrollRef}
+                                onScroll={handleScroll}
+                                sx={{
+                                    display: 'flex',
+                                    overflowX: 'auto',
+                                    scrollSnapType: 'x mandatory',
+                                    gap: 2,
+                                    pb: 4,
+                                    px: 2,
+                                    mx: -2,
+                                    '&::-webkit-scrollbar': { height: '4px' },
+                                    '&::-webkit-scrollbar-track': { background: 'rgba(255, 255, 255, 0.1)' },
+                                    '&::-webkit-scrollbar-thumb': { background: 'rgba(255, 255, 255, 0.3)', borderRadius: '4px' },
+                                }}
+                            >
                                 {reviews.map((review, index) => (
-                                    <Box key={index}>
-                                        <Card sx={{ ...baseCardSX, width: "92vw", maxWidth: 560, height: CARD_H_MOBILE, margin: "0 auto", mb: 2 }}>
-                                            <CardContent sx={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                                                <Box sx={{ position: "absolute", top: 20, right: 20 }}>
-                                                    <GoogleIcon sx={{ color: '#fff', opacity: 0.8 }} />
-                                                </Box>
-                                                <Box sx={{ display: "flex", alignItems: "center", mb: 2, flexShrink: 0 }}>
-                                                    <Avatar sx={{ width: 40, height: 40, mr: 2, border: "2px solid rgba(255,255,255,0.25)" }} src={review.profile_photo_url} alt={review.author_name} />
-                                                    <Box>
-                                                        <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "0.95rem", color: "#fff" }}>{review.author_name}</Typography>
-                                                        <Typography variant="body2" sx={{ color: secondaryText }}>{new Date(review.time * 1000).toLocaleDateString()}</Typography>
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            minWidth: '85vw',
+                                            maxWidth: '400px',
+                                            scrollSnapAlign: 'center',
+                                            flexShrink: 0,
+                                        }}
+                                    >
+                                        <Card sx={{ ...baseCardSX, height: CARD_H_MOBILE }}>
+                                            <CardContent sx={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", p: 0, paddingBottom: "0 !important" }}>
+                                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mb: 3 }}>
+                                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                        <Avatar sx={{ width: 52, height: 52, mr: 2.5, border: "2px solid rgba(255,255,255,0.1)" }} src={review.profile_photo_url} alt={review.author_name} />
+                                                        <Box textAlign="left">
+                                                            <Typography variant="h6" sx={{ fontWeight: 600, fontSize: "1.1rem", color: "#fff", letterSpacing: "0.02em" }}>{review.author_name}</Typography>
+                                                            <Typography variant="body2" sx={{ color: secondaryText, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", mt: 0.5 }}>{new Date(review.time * 1000).toLocaleDateString()}</Typography>
+                                                        </Box>
+                                                    </Box>
+                                                    <Box sx={{
+                                                        p: 1,
+                                                        borderRadius: "50%",
+                                                        bgcolor: "rgba(255,255,255,0.05)",
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent: "center"
+                                                    }}>
+                                                        <GoogleIcon sx={{ color: '#fff', fontSize: 20 }} />
                                                     </Box>
                                                 </Box>
-                                                <Rating value={review.rating} precision={0.5} readOnly sx={{ mb: 2, flexShrink: 0, "& .MuiRating-iconFilled": { color: "#FFD700" } }} />
-                                                <Typography variant="body2" sx={{ color: alpha("#fff", 0.9), fontStyle: "italic", fontSize: "0.95rem", lineHeight: 1.6 }}>"{review.text}"</Typography>
+
+                                                <Rating value={review.rating} precision={0.5} readOnly sx={{ mb: 2.5, "& .MuiRating-iconFilled": { color: "#FFD700" }, "& .MuiRating-iconEmpty": { color: "rgba(255,255,255,0.1)" } }} />
+
+                                                <Typography variant="body1" sx={{
+                                                    color: alpha("#fff", 0.8),
+                                                    fontStyle: "normal",
+                                                    fontSize: "1.05rem",
+                                                    lineHeight: 1.7,
+                                                    overflowY: "auto",
+                                                    textAlign: "left",
+                                                    flexGrow: 1,
+                                                    fontFamily: '"Inter", sans-serif',
+                                                    fontWeight: 300,
+                                                    "&::-webkit-scrollbar": { width: "4px" },
+                                                    "&::-webkit-scrollbar-track": { background: "rgba(255, 255, 255, 0.1)" },
+                                                    "&::-webkit-scrollbar-thumb": { background: "#0062cc", borderRadius: "4px" },
+                                                }}>
+                                                    "{review.text}"
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </Box>
                                 ))}
-                            </Slider>
+                                <Box sx={{ minWidth: '1px' }} />
+                            </Box>
+
+                            {/* Dot Indicators */}
+                            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5, mt: 2 }}>
+                                {reviews.map((_, index) => (
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            width: index === activeIndex ? 24 : 8, // Elongated active dot
+                                            height: 8,
+                                            borderRadius: 4,
+                                            bgcolor: index === activeIndex ? '#0062cc' : 'rgba(255, 255, 255, 0.2)',
+                                            transition: 'all 0.3s ease',
+                                            cursor: 'pointer',
+                                            '&:hover': {
+                                                bgcolor: index === activeIndex ? '#0062cc' : 'rgba(255, 255, 255, 0.4)',
+                                            }
+                                        }}
+                                        onClick={() => {
+                                            if (scrollRef.current) {
+                                                const cardWidth = scrollRef.current.clientWidth * 0.85 + 16; // Approx width + gap
+                                                // Simplified scroll to index
+                                                scrollRef.current.scrollTo({
+                                                    left: scrollRef.current.children[index].offsetLeft - 16, // Adjust for padding
+                                                    behavior: 'smooth'
+                                                });
+                                            }
+                                        }}
+                                    />
+                                ))}
+                            </Box>
                         </Box>
                     ) : (
                         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-                            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 3, justifyContent: "center", alignItems: "stretch" }}>
+                            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, border: "1px solid rgba(255,255,255,0.1)", borderRight: "none", borderBottom: "none" }}>
                                 {reviews.map((review, index) => (
                                     <motion.div key={index} variants={cardVariants}>
-                                        <Card sx={{ ...baseCardSX, ...hoverDesktopSX, height: CARD_H_DESKTOP }}>
-                                            <CardContent sx={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                                                <Box sx={{ position: "absolute", top: 20, right: 20 }}>
-                                                    <GoogleIcon sx={{ color: '#fff', opacity: 0.8 }} />
-                                                </Box>
-                                                <Box sx={{ display: "flex", alignItems: "center", mb: 2, flexShrink: 0 }}>
-                                                    <Avatar sx={{ width: 40, height: 40, mr: 2, border: "2px solid rgba(255,255,255,0.25)" }} src={review.profile_photo_url} alt={review.author_name} />
-                                                    <Box>
-                                                        <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "0.95rem", color: "#fff" }}>{review.author_name}</Typography>
-                                                        <Typography variant="body2" sx={{ color: secondaryText }}>{new Date(review.time * 1000).toLocaleDateString()}</Typography>
+                                        <Card sx={{
+                                            ...baseCardSX,
+                                            border: "none",
+                                            borderRight: "1px solid rgba(255,255,255,0.1)",
+                                            borderBottom: "1px solid rgba(255,255,255,0.1)",
+                                            height: "100%",
+                                            minHeight: CARD_H_DESKTOP
+                                        }}>
+                                            <CardContent sx={{ flex: 1, display: "flex", flexDirection: "column", padding: 0, paddingBottom: "0 !important" }}>
+                                                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mb: 3 }}>
+                                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                        <Avatar sx={{ width: 48, height: 48, mr: 2, bgcolor: "#333" }} src={review.profile_photo_url} alt={review.author_name} />
+                                                        <Box textAlign="left">
+                                                            <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1rem", color: "#fff" }}>{review.author_name}</Typography>
+                                                            <Typography variant="body2" sx={{ color: secondaryText, fontSize: "0.85rem" }}>{new Date(review.time * 1000).toLocaleDateString()}</Typography>
+                                                        </Box>
                                                     </Box>
+                                                    <GoogleIcon sx={{ color: '#0062cc' }} />
                                                 </Box>
-                                                <Rating value={review.rating} precision={0.5} readOnly sx={{ mb: 2, flexShrink: 0, "& .MuiRating-iconFilled": { color: "#FFD700" } }} />
-                                                <Typography variant="body2" sx={{ color: alpha("#fff", 0.9), fontStyle: "italic", fontSize: "0.95rem", lineHeight: 1.6, flexGrow: 1, overflowY: "auto", pr: 1, "&::-webkit-scrollbar": { width: "4px" }, "&::-webkit-scrollbar-track": { background: "rgba(255,255,255,0.05)" }, "&::-webkit-scrollbar-thumb": { background: "rgba(255,255,255,0.3)", borderRadius: "4px" } }}>"{review.text}"</Typography>
+
+                                                <Rating value={review.rating} precision={0.5} readOnly sx={{ mb: 2, "& .MuiRating-iconFilled": { color: "#FFD700" }, "& .MuiRating-iconEmpty": { color: "#333" } }} />
+
+                                                <Typography variant="body1" sx={{ color: "grey.400", fontSize: "1rem", lineHeight: 1.6, textAlign: "left", flexGrow: 1 }}>
+                                                    "{review.text}"
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </motion.div>
@@ -190,30 +267,6 @@ const Testimonials = () => {
                         </motion.div>
                     )
                 }
-
-                {/* <Button
-                    component={motion.a}
-                    initial={{ scale: 0.9 }}
-                    animate={{ scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    sx={{
-                        mt: 8,
-                        backgroundColor: "primary.main",
-                        color: "#fff",
-                        fontWeight: "bold",
-                        px: 5,
-                        py: 1.5,
-                        borderRadius: "50px",
-                        fontSize: "0.9rem",
-                        boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
-                        "&:hover": { backgroundColor: "#004ba0" }
-                    }}
-                    href="#"
-                >
-                    VIEW MORE ON GOOGLE
-                </Button> */}
             </Container >
         </Box >
     );

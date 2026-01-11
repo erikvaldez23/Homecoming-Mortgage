@@ -13,9 +13,7 @@ const About = () => {
             <OurStory />
             <MissionVision />
             {/* <Team /> */}
-            <Box sx={{ px: 2 }}>
-                <CTA />
-            </Box>
+            <CTA />
         </Box>
     );
 };

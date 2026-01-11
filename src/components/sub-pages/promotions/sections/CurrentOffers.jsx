@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Box, Container, Typography, Stack, Button, Chip, Divider } from "@mui/material";
+import React from "react";
+import { Box, Container, Typography, Stack, Button, Chip, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
 const offers = [
     {
@@ -28,7 +27,8 @@ const offers = [
 ];
 
 const CurrentOffers = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
@@ -56,18 +56,19 @@ const CurrentOffers = () => {
                     {offers.map((offer, index) => (
                         <Box
                             key={index}
-                            onMouseEnter={() => setActiveIndex(index)}
                             sx={{
                                 borderBottom: "1px solid rgba(255,255,255,0.1)",
                                 py: 6,
                                 cursor: "pointer",
                                 transition: "all 0.4s ease",
-                                opacity: activeIndex === index ? 1 : 0.5,
-                                "&:hover": {
-                                    opacity: 1,
-                                    bgcolor: "rgba(255,255,255,0.02)",
-                                    pl: 2
-                                }
+                                opacity: 1, // Always fully visible
+                                ...(!isMobile && {
+                                    "&:hover": {
+                                        opacity: 1,
+                                        bgcolor: "rgba(255,255,255,0.02)",
+                                        pl: 2
+                                    }
+                                })
                             }}
                         >
                             <Stack
@@ -117,10 +118,12 @@ const CurrentOffers = () => {
                                             borderRadius: 50,
                                             px: 3,
                                             py: 1,
-                                            "&:hover": {
-                                                bgcolor: offer.color,
-                                                borderColor: offer.color
-                                            }
+                                            ...(!isMobile && {
+                                                "&:hover": {
+                                                    bgcolor: offer.color,
+                                                    borderColor: offer.color
+                                                }
+                                            })
                                         }}
                                         variant="outlined"
                                     >

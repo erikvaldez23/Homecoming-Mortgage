@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import ContactDetails from "./sections/ContactDetails";
+import CallToAction from "../../global/CTA";
 
 const Contact = () => {
     return (
@@ -50,6 +51,7 @@ const Contact = () => {
 
             {/* Contact Content */}
             <ContactDetails />
+            <CallToAction />
         </Box>
     );
 };
