@@ -168,8 +168,14 @@ export default function Topbar() {
             {/* Right: CTA / Mobile Menu */}
             <Stack direction="row" spacing={2} alignItems="center">
               {isMdUp ? (
-                <PhoneCTA startIcon={<CallIcon />}>
-                  {PHONE}
+                <PhoneCTA
+                  component="a"
+                  href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                // startIcon={<CallIcon />} // Removing icon or changing it if preferred, user didn't specify icon but "Apply Now" usually fits without or with an Arrow
+                >
+                  Apply Now
                 </PhoneCTA>
               ) : (
                 <IconButton

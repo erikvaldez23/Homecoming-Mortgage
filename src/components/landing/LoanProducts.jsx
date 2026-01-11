@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Container, Typography, Stack } from '@mui/material';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
@@ -33,8 +33,6 @@ const loanProductsData = [
 ];
 
 const LoanProducts = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
     return (
         <Box sx={{ py: 20, bgcolor: '#0a0a0a', overflow: 'hidden', color: '#fff' }}>
             <Container maxWidth="lg">
@@ -74,24 +72,16 @@ const LoanProducts = () => {
                     {loanProductsData.map((product, index) => (
                         <Box
                             key={index}
-                            onMouseEnter={() => setActiveIndex(index)}
                             sx={{
                                 flex: 1,
                                 position: 'relative',
                                 p: 4,
-                                cursor: "pointer",
-                                transition: "all 0.4s ease",
                                 borderRight: { xs: 'none', md: "1px solid rgba(255,255,255,0.1)" },
                                 borderBottom: { xs: "1px solid rgba(255,255,255,0.1)", md: 'none' },
                                 '&:last-child': {
                                     borderRight: 'none',
                                     borderBottom: 'none'
                                 },
-                                // opacity: activeIndex === index ? 1 : 0.4,
-                                "&:hover": {
-                                    opacity: 1,
-                                    bgcolor: "rgba(255,255,255,0.02)",
-                                }
                             }}
                         >
                             <Stack spacing={4} height="100%" justifyContent="space-between">
@@ -113,9 +103,7 @@ const LoanProducts = () => {
                                             sx={{
                                                 p: 1,
                                                 borderRadius: "50%",
-                                                color: activeIndex === index ? "#0062cc" : "grey.600",
-                                                transition: "all 0.3s ease",
-                                                transform: activeIndex === index ? "scale(1.1)" : "scale(1)"
+                                                color: "#0062cc",
                                             }}
                                         >
                                             {product.icon}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Container, Typography, Stack } from '@mui/material';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
@@ -33,8 +33,6 @@ const servicesData = [
 ];
 
 const Services = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
     return (
         <Box sx={{ py: 20, bgcolor: '#0a0a0a', overflow: 'hidden', color: '#fff' }}>
             <Container maxWidth="lg">
@@ -66,28 +64,62 @@ const Services = () => {
                     {servicesData.map((service, index) => (
                         <Box
                             key={index}
-                            onMouseEnter={() => setActiveIndex(index)}
                             sx={{
                                 borderBottom: "1px solid rgba(255,255,255,0.1)",
-                                py: 6,
-                                cursor: "pointer",
-                                transition: "all 0.4s ease",
-                                // opacity: activeIndex === index ? 1 : 0.4,
-                                "&:hover": {
-                                    opacity: 1,
-                                    bgcolor: "rgba(255,255,255,0.02)",
-                                    pl: 2
-                                }
+                                py: { xs: 4, md: 6 },
+                                px: { xs: 2, md: 0 },
                             }}
                         >
+                            {/* Mobile Layout (Matches LoanProducts) */}
+                            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                                <Stack spacing={4} justifyContent="space-between">
+                                    <Box>
+                                        <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 3 }}>
+                                            <Typography
+                                                variant="h3"
+                                                sx={{
+                                                    fontWeight: 800,
+                                                    color: "rgba(255,255,255,0.1)",
+                                                    lineHeight: 0.8,
+                                                    fontSize: "3rem",
+                                                    fontFamily: 'monospace'
+                                                }}
+                                            >
+                                                {service.id}
+                                            </Typography>
+                                            <Box
+                                                sx={{
+                                                    p: 1,
+                                                    borderRadius: "50%",
+                                                    color: "#0062cc",
+                                                }}
+                                            >
+                                                {service.icon}
+                                            </Box>
+                                        </Stack>
+
+                                        <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, fontSize: '1.5rem' }}>
+                                            {service.title}
+                                        </Typography>
+
+                                        <Typography variant="body1" sx={{ color: "grey.400", lineHeight: 1.6 }}>
+                                            {service.description}
+                                        </Typography>
+                                    </Box>
+                                </Stack>
+                            </Box>
+
+
+                            {/* Desktop Layout (Preserved) */}
                             <Stack
-                                direction={{ xs: "column", md: "row" }}
-                                alignItems={{ xs: "flex-start", md: "center" }}
+                                direction="row"
+                                alignItems="center"
                                 justifyContent="space-between"
                                 spacing={4}
+                                sx={{ display: { xs: 'none', md: 'flex' } }}
                             >
                                 {/* Left: Number & Title */}
-                                <Box sx={{ width: { md: "40%" } }}>
+                                <Box sx={{ width: "40%" }}>
                                     <Stack direction="row" alignItems="flex-start" spacing={3}>
                                         <Typography
                                             variant="h3"
@@ -108,21 +140,19 @@ const Services = () => {
                                 </Box>
 
                                 {/* Middle: Description */}
-                                <Box sx={{ width: { md: "45%" } }}>
+                                <Box sx={{ width: "45%" }}>
                                     <Typography variant="body1" sx={{ color: "grey.400", lineHeight: 1.6, fontSize: "1.2rem" }}>
                                         {service.description}
                                     </Typography>
                                 </Box>
 
                                 {/* Right: Icon */}
-                                <Box sx={{ width: { md: "15%" }, display: "flex", justifyContent: "flex-end" }}>
+                                <Box sx={{ width: "15%", display: "flex", justifyContent: "flex-end" }}>
                                     <Box
                                         sx={{
                                             p: 2,
                                             borderRadius: "50%",
-                                            color: activeIndex === index ? "#0062cc" : "grey.600",
-                                            transition: "all 0.3s ease",
-                                            transform: activeIndex === index ? "scale(1.1)" : "scale(1)"
+                                            color: "#0062cc",
                                         }}
                                     >
                                         {service.icon}

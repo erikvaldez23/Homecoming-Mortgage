@@ -26,7 +26,8 @@ const Footer = () => {
     display: "block",
     mb: 0.5,
     "&:hover": {
-      textDecoration: "underline",
+      color: "#ffffff",
+      textDecoration: "none",
     },
   };
 
@@ -46,47 +47,50 @@ const Footer = () => {
         <Grid container spacing={4} sx={{ mb: 10 }}>
 
           {/* Column 1: Contact & Socials */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>
-                <a href="mailto:info@homecomingmortgage.com" style={{ ...linkStyles, display: 'inline', mb: 0 }}>
-                  info@homecomingmortgage.com
-                </a>
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                <Box component="a" href="mailto:info@homecomingmortgage.com" sx={{ ...linkStyles, display: 'inline', mb: 0 }}>
+                  Pirouz@mortgagehmc.com
+                </Box>
               </Typography>
               <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                <a href="tel:+11234567890" style={{ ...linkStyles, display: 'inline', mb: 0 }}>
-                  123-456-7890
-                </a>
+                Cell: <Box component="a" href="tel:+19723390630" sx={{ ...linkStyles, display: 'inline', mb: 0 }}>(972) 339-0630</Box>
+                <br />
+                Office: <Box component="a" href="tel:+19729916115" sx={{ ...linkStyles, display: 'inline', mb: 0 }}>(972) 991-6115</Box>
+                <br />
+                NMLS: <Box component="span" sx={{ ...linkStyles, display: 'inline', mb: 0, cursor: 'default', '&:hover': { color: 'inherit' } }}> 2582358 </Box>
               </Typography>
             </Box>
 
-            <Stack direction="row" spacing={1}>
-              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1 }}>
+            {/* Desktop Socials */}
+            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <FacebookIcon fontSize="small" />
               </IconButton>
-              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1 }}>
+              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <InstagramIcon fontSize="small" />
               </IconButton>
-              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1 }}>
+              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <TwitterIcon fontSize="small" />
               </IconButton>
-              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1 }}>
+              <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <LinkedInIcon fontSize="small" />
               </IconButton>
             </Stack>
           </Grid>
 
           {/* Column 2: Address */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
             <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: 1.6 }}>
-              123 Address Lane, <br />
-              Suite 100, Dallas, TX <br />
-              75201, USA
+              13601 Preston Rd. <br />
+              Suite 102E, Dallas, TX <br />
+              75240, USA
             </Typography>
           </Grid>
 
           {/* Column 3: Legal & Policy */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' }, display: { xs: 'none', md: 'block' } }}>
             <Box component="a" href="#" sx={linkStyles}>Privacy Policy</Box>
             <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
             <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
@@ -99,33 +103,50 @@ const Footer = () => {
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: "8vw", md: "9vw" }, // Reduced to fit "Homecoming Mortgage"
+              fontSize: { xs: "15vw", md: "9vw" }, // Larger on mobile since it's split
               fontWeight: 400,
-              lineHeight: 1.5,
-              whiteSpace: "normal", // Allow wrapping on small screens
+              lineHeight: { xs: 1.1, md: 1.5 },
+              whiteSpace: "normal",
               color: BRAND_BLUE,
-              fontFamily: '"Inter", sans-serif', // Ensure clean sans-serif
+              fontFamily: '"Inter", sans-serif',
               letterSpacing: "-0.04em",
-              textAlign: "center", // Center it to look nice
+              textAlign: "center",
               width: "100%",
               display: "block",
             }}
           >
-            Homecoming Mortgage
+            <Box component="span" sx={{ display: { xs: 'block', md: 'inline' } }}>Homecoming</Box>
+            <Box component="span" sx={{ display: { xs: 'block', md: 'inline' } }}> Mortgage</Box>
           </Typography>
         </Box>
+
+        {/* Mobile Socials - Centered under big text */}
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ display: { xs: 'flex', md: 'none' }, mb: 4 }}>
+          <IconButton size="small" sx={{ color: BRAND_BLUE, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
+            <FacebookIcon fontSize="medium" />
+          </IconButton>
+          <IconButton size="small" sx={{ color: BRAND_BLUE, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
+            <InstagramIcon fontSize="medium" />
+          </IconButton>
+          <IconButton size="small" sx={{ color: BRAND_BLUE, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
+            <TwitterIcon fontSize="medium" />
+          </IconButton>
+          <IconButton size="small" sx={{ color: BRAND_BLUE, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
+            <LinkedInIcon fontSize="medium" />
+          </IconButton>
+        </Stack>
 
         {/* Bottom Section: Copyright */}
         <Divider sx={{ borderColor: "rgba(0, 98, 204, 0.1)", mb: 3 }} />
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-          <Typography variant="caption" sx={{ color: BRAND_BLUE, opacity: 0.8 }}>
+        <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'space-between' }, flexWrap: 'wrap' }}>
+          <Typography variant="caption" sx={{ color: BRAND_BLUE, opacity: 0.8, textAlign: { xs: 'center', md: 'left' } }}>
             © {new Date().getFullYear()} by Homecoming Mortgage.
           </Typography>
         </Box>
 
-      </Container>
-    </Box>
+      </Container >
+    </Box >
   );
 };
 
