@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
-import ContactDetails from "./sections/ContactDetails";
 import CallToAction from "../../global/CTA";
+import ContactForm from "./sections/ContactForm";
+import ContactDetails from "./sections/ContactDetails";
 
 const Contact = () => {
     return (
@@ -51,6 +52,7 @@ const Contact = () => {
 
             {/* Contact Content */}
             <ContactDetails />
+            <ContactForm />
             <CallToAction />
         </Box>
     );

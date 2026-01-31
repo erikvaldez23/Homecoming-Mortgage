@@ -32,8 +32,8 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 // Keeping the accent color or switching to something more "Mortgage/Financial"
 // Let's stick with the gold/yellow accent for now as it fits "Homecoming" warmth, 
 // but we might want to mute it slightly for a more premium financial look later.
-const ACCENT = "#f2c230";
-const ACCENT_HOVER = "#ffd95a";
+const ACCENT = "#0062cc";
+const ACCENT_HOVER = "#004599";
 const TOOLBAR_HEIGHT = 80;
 
 /* Socials - Placeholder for now */
@@ -76,22 +76,39 @@ const NavLink = styled(MuiLink)(({ theme, active }) => ({
   letterSpacing: 0.5,
   textDecoration: "none",
   fontSize: "0.95rem",
-  color: alpha(theme.palette.common.white, 0.8),
-  padding: "8px 16px",
-  borderRadius: 50,
-  transition: "all 0.2s ease",
+  color: alpha(theme.palette.common.white, 0.7),
+  padding: "8px 12px",
+  transition: "all 0.3s ease",
+
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    width: "100%",
+    transform: "scaleX(0)",
+    height: "2px",
+    bottom: 0,
+    left: 0,
+    backgroundColor: ACCENT,
+    transformOrigin: "bottom right",
+    transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+  },
 
   "&:hover": {
     color: "#fff",
-    backgroundColor: "rgba(255, 255, 255, 0.1)"
+    textShadow: `0 0 12px ${alpha(ACCENT, 0.6)}`,
+    "&::after": {
+      transform: "scaleX(1)",
+      transformOrigin: "bottom left",
+    },
   },
 
   ...(active && {
-    color: "#000",
-    backgroundColor: "#fff",
+    color: "#fff",
     fontWeight: 600,
-    "&:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.9)"
+    textShadow: `0 0 12px ${alpha(ACCENT, 0.6)}`,
+    "&::after": {
+      transform: "scaleX(1)",
+      backgroundColor: "#fff",
     },
   }),
 }));
@@ -141,11 +158,17 @@ export default function Topbar() {
             sx={{ minHeight: TOOLBAR_HEIGHT, justifyContent: "space-between" }}
           >
             {/* Left: Logo */}
-            <LogoBox component={RouterLink} to="/" sx={{ display: 'flex', alignItems: 'center' }}>
+            <LogoBox component={RouterLink} to="/" sx={{
+              display: 'flex', alignItems: 'center', "&:hover": {
+                transform: "translateY(-1px)",
+              },
+            }}>
               <img
                 src="/logo.png"
                 alt="Homecoming Mortgage"
-                style={{ width: '200px', height: 'auto', display: 'block' }}
+                style={{
+                  width: '200px', height: 'auto', display: 'block'
+                }}
               />
             </LogoBox>
 
@@ -173,6 +196,15 @@ export default function Topbar() {
                   href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
                   target="_blank"
                   rel="noopener noreferrer"
+                  sx={{
+                    background: "#0062cc", color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#000",
+                      transform: "translateY(-1px)",
+                      boxShadow: "0 4px 12px rgba(255, 255, 255, 0.2)",
+                    },
+                  }}
                 // startIcon={<CallIcon />} // Removing icon or changing it if preferred, user didn't specify icon but "Apply Now" usually fits without or with an Arrow
                 >
                   Apply Now
@@ -188,7 +220,7 @@ export default function Topbar() {
             </Stack>
           </Toolbar>
         </Container>
-      </GlassBar>
+      </GlassBar >
 
       {/* Mobile Drawer */}
       <Drawer
@@ -198,34 +230,104 @@ export default function Topbar() {
         PaperProps={{
           sx: {
             width: "100%",
-            maxWidth: 300,
+            maxWidth: 320,
             background: "#0a0a0a",
             color: "#fff",
             borderLeft: "1px solid rgba(255,255,255,0.1)",
           },
         }}
       >
-        <Box sx={{ p: 2, display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={() => setOpen(false)} sx={{ color: "#fff" }}>
-            <CloseRoundedIcon />
-          </IconButton>
-        </Box>
-        <List>
-          {NAV.map((item) => (
-            <ListItem key={item.to} disablePadding>
-              <ListItemButton
-                component={RouterLink}
-                to={item.to}
-                onClick={() => setOpen(false)}
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          {/* Drawer Header */}
+          <Box sx={{ p: 3, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Box component={RouterLink} to="/" onClick={() => setOpen(false)}>
+              <img
+                src="/logo.png"
+                alt="Homecoming Mortgage"
+                style={{ width: '140px', height: 'auto', display: 'block' }}
+              />
+            </Box>
+            <IconButton onClick={() => setOpen(false)} sx={{ color: "rgba(255,255,255,0.5)", "&:hover": { color: "#fff" } }}>
+              <CloseRoundedIcon sx={{ fontSize: 28 }} />
+            </IconButton>
+          </Box>
+
+          <Divider sx={{ borderColor: 'rgba(255,255,255,0.05)' }} />
+
+          {/* Navigation Links */}
+          <List sx={{ flexGrow: 1, px: 2, pt: 3 }}>
+            {NAV.map((item) => (
+              <ListItem key={item.to} disablePadding sx={{ mb: 1 }}>
+                <ListItemButton
+                  component={RouterLink}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  sx={{
+                    borderRadius: "12px",
+                    "&:hover": {
+                      background: "rgba(255,255,255,0.05)",
+                    }
+                  }}
+                >
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{
+                      fontSize: '1.25rem',
+                      fontWeight: 500,
+                      color: pathname === item.to ? ACCENT : "#fff"
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+
+          {/* Drawer Footer */}
+          <Box sx={{ p: 4 }}>
+            <Stack direction="row" spacing={3} justifyContent="center" sx={{ mb: 4 }}>
+              <IconButton
+                component="a"
+                href="#"
+                target="_blank"
+                sx={{
+                  color: "rgba(255,255,255,0.6)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
               >
-                <ListItemText
-                  primary={item.label}
-                  primaryTypographyProps={{ fontSize: '1.2rem', fontWeight: 600 }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                <InstagramIcon />
+              </IconButton>
+              <IconButton
+                component="a"
+                href="#"
+                target="_blank"
+                sx={{
+                  color: "rgba(255,255,255,0.6)",
+                  border: "1px solid rgba(255,255,255,0.1)"
+                }}
+              >
+                <FacebookIcon />
+              </IconButton>
+            </Stack>
+
+            <Button
+              fullWidth
+              component="a"
+              href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
+              target="_blank"
+              sx={{
+                bgcolor: ACCENT,
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "1rem",
+                textTransform: "none",
+                py: 2,
+                borderRadius: "22px",
+              }}
+            >
+              Apply Now
+            </Button>
+          </Box>
+        </Box>
       </Drawer>
     </>
   );

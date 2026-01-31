@@ -144,8 +144,8 @@ export default function CallToAction({
               onClick={handlePrimary}
               endIcon={<ArrowForwardIcon />}
               sx={{
-                bgcolor: CTA_PRIMARY,
-                color: "#0062cc",
+                bgcolor: "#0a0a0a",
+                color: "#fff",
                 fontSize: "1.1rem",
                 fontWeight: 700,
                 px: 5,
@@ -155,6 +155,7 @@ export default function CallToAction({
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
                 "&:hover": {
                   bgcolor: "#f5f5f5",
+                  color: "#000",
                   transform: "translateY(-2px)",
                   boxShadow: "0 15px 35px rgba(0, 0, 0, 0.2)"
                 },

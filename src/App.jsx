@@ -30,7 +30,7 @@ const theme = createTheme({
       main: "#0062cc", // Deep Sea Blue (Vibrant)
     },
     background: {
-      default: "#020d1c", // Deepest Navy
+      default: "#0a0a0a", // Deepest Navy
       paper: "#0f223d",   // Lighter Navy
     },
     text: {

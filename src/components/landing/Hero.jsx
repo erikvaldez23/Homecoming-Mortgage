@@ -86,7 +86,6 @@ const Hero = () => {
                             px: 5,
                             py: 2,
                             fontSize: '1.1rem',
-                            '&:hover': { bgcolor: '#059669' },
                         }}
                     >
                         Get Started

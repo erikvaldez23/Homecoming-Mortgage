@@ -92,9 +92,9 @@ const Footer = () => {
           {/* Column 3: Legal & Policy */}
           <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' }, display: { xs: 'none', md: 'block' } }}>
             <Box component="a" href="#" sx={linkStyles}>Privacy Policy</Box>
-            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
-            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
-            <Box component="a" href="#" sx={linkStyles}>Example Route</Box>
+            <Box component="a" href="#" sx={linkStyles}>Contact Us</Box>
+            <Box component="a" href="#" sx={linkStyles}>Apply Now</Box>
+            <Box component="a" href="#" sx={linkStyles}>About Us</Box>
           </Grid>
         </Grid>
 

@@ -4,26 +4,26 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const offers = [
     {
-        title: "First-Time Buyer Grant",
-        description: "Get up to $2,500 towards closing costs when you purchase your first home with Homecoming Mortgage.",
+        title: "1-0 BUYDOWN Refinance",
+        description: "While the market continues to improve, take advantage of the 1-0 buydown option and save a considerable amount on your monthly payment until you are able to switch to a fixed rate (Buydown & Closing costs covered).",
         expiry: "Valid until Dec 31, 2025",
-        code: "GOHOME25",
+        code: "1-0BUYDOWN",
         color: "#0062cc",
     },
-    {
-        title: "Refinance Rate Drop",
-        description: "Lock in a rate 0.25% lower than advertised when you switch from another lender.",
-        expiry: "Valid for applications submitted this month",
-        code: "SWITCH&SAVE",
-        color: "#7c3aed",
-    },
-    {
-        title: "Eco-Friendly Home Bonus",
-        description: "Buying an energy-efficient home? Receive a free appraisal and discounted origination fees.",
-        expiry: "Ongoing promotion",
-        code: "GREENHOME",
-        color: "#10b981",
-    },
+    // {
+    //     title: "Refinance Rate Drop",
+    //     description: "Lock in a rate 0.25% lower than advertised when you switch from another lender.",
+    //     expiry: "Valid for applications submitted this month",
+    //     code: "SWITCH&SAVE",
+    //     color: "#7c3aed",
+    // },
+    // {
+    //     title: "Eco-Friendly Home Bonus",
+    //     description: "Buying an energy-efficient home? Receive a free appraisal and discounted origination fees.",
+    //     expiry: "Ongoing promotion",
+    //     code: "GREENHOME",
+    //     color: "#10b981",
+    // },
 ];
 
 const CurrentOffers = () => {

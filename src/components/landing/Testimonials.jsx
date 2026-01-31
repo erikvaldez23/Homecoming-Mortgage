@@ -9,10 +9,10 @@ import {
     Rating,
     Container,
     useMediaQuery,
+    Button,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import GoogleIcon from '@mui/icons-material/Google';
 
 // Static Data for Homecoming Mortgage
 const reviews = [
@@ -165,12 +165,13 @@ const Testimonials = () => {
                                                     <Box sx={{
                                                         p: 1,
                                                         borderRadius: "50%",
-                                                        bgcolor: "rgba(255,255,255,0.05)",
                                                         display: "flex",
                                                         alignItems: "center",
-                                                        justifyContent: "center"
+                                                        justifyContent: "center",
+                                                        width: 40,
+                                                        height: 40
                                                     }}>
-                                                        <GoogleIcon sx={{ color: '#fff', fontSize: 20 }} />
+                                                        <img src="/google-logo.png" alt="Google" style={{ width: "32px", height: "auto" }} />
                                                     </Box>
                                                 </Box>
 
@@ -251,7 +252,18 @@ const Testimonials = () => {
                                                             <Typography variant="body2" sx={{ color: secondaryText, fontSize: "0.85rem" }}>{new Date(review.time * 1000).toLocaleDateString()}</Typography>
                                                         </Box>
                                                     </Box>
-                                                    <GoogleIcon sx={{ color: '#0062cc' }} />
+                                                    <Box sx={{
+                                                        p: 1,
+                                                        borderRadius: "50%",
+                                                        bgcolor: "rgba(255,255,255,0.05)",
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent: "center",
+                                                        width: 40,
+                                                        height: 40
+                                                    }}>
+                                                        <img src="/google-logo.png" alt="Google" style={{ width: "24px", height: "auto" }} />
+                                                    </Box>
                                                 </Box>
 
                                                 <Rating value={review.rating} precision={0.5} readOnly sx={{ mb: 2, "& .MuiRating-iconFilled": { color: "#FFD700" }, "& .MuiRating-iconEmpty": { color: "#333" } }} />
@@ -267,6 +279,43 @@ const Testimonials = () => {
                         </motion.div>
                     )
                 }
+
+                <Box sx={{ mt: 10, pt: 8, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                    <Typography variant="h4" sx={{ color: "#fff", fontWeight: 700, mb: 2, fontSize: { xs: "1.5rem", md: "2rem" } }}>
+                        Had a great experience working with us?
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "grey.400", mb: 4, maxWidth: "600px", mx: "auto", fontSize: "1.1rem" }}>
+                        We'd love to hear from you! Your feedback helps us continue to provide the best service possible.
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        component="a"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            bgcolor: "#0062cc",
+                            color: "white",
+                            px: 5,
+                            py: 1.5,
+                            borderRadius: "50px",
+                            fontSize: "1.1rem",
+                            textTransform: "none",
+                            fontWeight: 600,
+                            boxShadow: "0 4px 14px 0 rgba(0, 98, 204, 0.39)",
+                            "&:hover": {
+                                bgcolor: "#0052ac",
+                                transform: "translateY(-2px)",
+                                boxShadow: "0 6px 20px rgba(0, 98, 204, 0.23)",
+                                color: "#fff"
+                            },
+                            transition: "all 0.2s ease-in-out"
+                        }}
+                    >
+                        Submit a Review
+                    </Button>
+                </Box>
             </Container >
         </Box >
     );
