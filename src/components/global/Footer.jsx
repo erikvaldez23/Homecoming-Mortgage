@@ -8,6 +8,7 @@ import {
   Divider,
   Grid,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -91,7 +92,7 @@ const Footer = () => {
 
           {/* Column 3: Legal & Policy */}
           <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' }, display: { xs: 'none', md: 'block' } }}>
-            <Box component="a" href="#" sx={linkStyles}>Privacy Policy</Box>
+            <Box component={Link} to="/privacy" sx={linkStyles}>Privacy Policy</Box>
             <Box component="a" href="#" sx={linkStyles}>Contact Us</Box>
             <Box component="a" href="#" sx={linkStyles}>Apply Now</Box>
             <Box component="a" href="#" sx={linkStyles}>About Us</Box>

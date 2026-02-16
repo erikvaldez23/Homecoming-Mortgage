@@ -15,19 +15,19 @@ const servicesData = [
     {
         id: '02',
         title: 'Refinancing',
-        description: 'We make it a point to refinance only when it is advantageous to the borrower and if we can cover most, if not all, of their closing costs.',
+        description: 'We make it a point to refinance only when it is advantageous to the borrower and if we can cover most of their closing costs.',
         icon: <MonetizationOnOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
         id: '03',
         title: 'Investment Properties',
-        description: 'Investment properties description',
+        description: `Are you thinking about purchasing your first (or next) investment property? Whether you're eyeing a single-family rental, duplex, or small multi-unit property, smart financing makes all the difference.`,
         icon: <DomainAddOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
         id: '04',
         title: 'Commercial Lending',
-        description: 'Commercial lending description',
+        description: `Thinking about purchasing office, retail, industrial, or mixed-use property? The right financing structure can significantly impact your cash flow, tax strategy, and long-term equity growth. Ask us about the different financing options.`,
         icon: <ApartmentOutlinedIcon sx={{ fontSize: 32 }} />,
     }
 ];

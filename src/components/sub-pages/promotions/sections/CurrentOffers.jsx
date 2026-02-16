@@ -59,16 +59,7 @@ const CurrentOffers = () => {
                             sx={{
                                 borderBottom: "1px solid rgba(255,255,255,0.1)",
                                 py: 6,
-                                cursor: "pointer",
-                                transition: "all 0.4s ease",
                                 opacity: 1, // Always fully visible
-                                ...(!isMobile && {
-                                    "&:hover": {
-                                        opacity: 1,
-                                        bgcolor: "rgba(255,255,255,0.02)",
-                                        pl: 2
-                                    }
-                                })
                             }}
                         >
                             <Stack
@@ -118,12 +109,6 @@ const CurrentOffers = () => {
                                             borderRadius: 50,
                                             px: 3,
                                             py: 1,
-                                            ...(!isMobile && {
-                                                "&:hover": {
-                                                    bgcolor: offer.color,
-                                                    borderColor: offer.color
-                                                }
-                                            })
                                         }}
                                         variant="outlined"
                                     >

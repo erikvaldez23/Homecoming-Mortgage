@@ -22,6 +22,7 @@ import CTA from "./components/global/CTA";
 import AboutPage from "./components/sub-pages/about/About";
 import PromotionsPage from "./components/sub-pages/promotions/Promotions";
 import ContactPage from "./components/sub-pages/contact/Contact";
+import PrivacyPolicy from "./components/sub-pages/policy/PrivacyPolicy";
 
 const theme = createTheme({
   palette: {
@@ -93,6 +94,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/promotions" element={<PromotionsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
           <Footer />
         </Router>

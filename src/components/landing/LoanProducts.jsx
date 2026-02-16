@@ -8,26 +8,26 @@ import VillaOutlinedIcon from '@mui/icons-material/VillaOutlined';
 const loanProductsData = [
     {
         id: '01',
-        title: 'FHA Loans',
-        description: 'Perfect for first-time homebuyers with lower credit scores or smaller down payments. Secure your future with flexible requirements.',
-        icon: <AccountBalanceOutlinedIcon sx={{ fontSize: 32 }} />,
-    },
-    {
-        id: '02',
-        title: 'VA Loans',
-        description: 'Exclusive benefits for veterans and active military. Enjoy zero down payment options and competitive interest rates as a thank you for your service.',
-        icon: <MilitaryTechOutlinedIcon sx={{ fontSize: 32 }} />,
-    },
-    {
-        id: '03',
         title: 'Conventional',
         description: 'Standard mortgage loans for borrowers with good credit. Offers great rates and flexible terms for your primary or investment property.',
         icon: <GavelOutlinedIcon sx={{ fontSize: 32 }} />,
     },
     {
+        id: '02',
+        title: 'FHA Loans',
+        description: 'Perfect for first-time homebuyers with lower credit scores or smaller down payments. Secure your future with flexible requirements.',
+        icon: <AccountBalanceOutlinedIcon sx={{ fontSize: 32 }} />,
+    },
+    {
+        id: '03',
+        title: 'VA Loans',
+        description: 'Exclusive benefits for veterans and active military. Enjoy zero down payment options and competitive interest rates as a thank you for your service.',
+        icon: <MilitaryTechOutlinedIcon sx={{ fontSize: 32 }} />,
+    },
+    {
         id: '04',
-        title: 'Jumbo Loans',
-        description: 'For luxury properties that exceed conforming loan limits. Get the financing you need for your high-value dream home.',
+        title: 'DSCR',
+        description: 'Apply for a mortgage through your LLC or S Corp',
         icon: <VillaOutlinedIcon sx={{ fontSize: 32 }} />,
     }
 ];

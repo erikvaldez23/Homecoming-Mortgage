@@ -67,8 +67,13 @@ const Hero = () => {
                         color: '#fff',
                     }}
                 >
-                    Hero quote<br />
-                    <Box component="span" sx={{ color: 'rgba(255,255,255,0.7)' }}>to go here</Box>
+                    Your Personal<br />
+                    <Box component="span" sx={{ color: 'rgba(255,255,255,0.7)' }}>Path to Home Ownership.</Box>
+                </Typography>
+
+                <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.7)', mb: 6, maxWidth: '600px', fontSize: '1.2rem', lineHeight: 1.6 }}>
+                    For personalized pricing and rates, please call us directly.
+                    Ready to move forward? Start your application online today.
                 </Typography>
 
                 <Stack
@@ -78,6 +83,10 @@ const Hero = () => {
                     sx={{ mb: 8 }}
                 >
                     <Button
+                        component="a"
+                        href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         variant="contained"
                         size="large"
                         sx={{
@@ -86,11 +95,17 @@ const Hero = () => {
                             px: 5,
                             py: 2,
                             fontSize: '1.1rem',
+                            "&:hover": {
+                                bgcolor: '#fff',
+                                color: '#000',
+                            }
                         }}
                     >
-                        Get Started
+                        Apply Now
                     </Button>
                     <Button
+                        component="a"
+                        href="tel:+19723390630"
                         variant="outlined"
                         size="large"
                         sx={{
@@ -101,10 +116,10 @@ const Hero = () => {
                             fontSize: '1.1rem',
                             backdropFilter: 'blur(10px)',
                             bgcolor: 'rgba(255,255,255,0.05)',
-                            '&:hover': { borderColor: '#fff', bgcolor: 'rgba(255,255,255,0.1)' },
+                            '&:hover': { bgcolor: '#fff', color: '#000', },
                         }}
                     >
-                        Learn More
+                        Call for Rates
                     </Button>
                 </Stack>
             </Container>
@@ -142,7 +157,7 @@ const Hero = () => {
                 {/* Call */}
                 <Box
                     component="a"
-                    href="tel:555-123-4567"
+                    href="tel:+19723390630"
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -161,7 +176,7 @@ const Hero = () => {
                 {/* Email */}
                 <Box
                     component="a"
-                    href="mailto:hello@homecoming.com"
+                    href="mailto:Pirouz@mortgagehmc.com"
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
