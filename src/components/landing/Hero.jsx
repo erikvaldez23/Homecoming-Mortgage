@@ -211,21 +211,7 @@ const Hero = () => {
                     <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Schedule</Typography>
                 </Box>
 
-                {/* Main CTA Text - Hide on very small screens if needed, or scale down */}
-                <Box sx={{
-                    ml: { sm: 2 },
-                    textAlign: { xs: 'center', sm: 'left' },
-                    borderLeft: { sm: '1px solid rgba(255,255,255,0.1)' },
-                    pl: { sm: 4 },
-                    display: { xs: 'none', sm: 'block' } // Hide text block on extra small mobile to fit icons in row
-                }}>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
-                        Free<br />Consultation
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'primary.main', fontWeight: 600, letterSpacing: 0.5 }}>
-                        BOOK TODAY
-                    </Typography>
-                </Box>
+
             </Paper>
         </Box>
     );
