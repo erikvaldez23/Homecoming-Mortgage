@@ -35,7 +35,7 @@ const OurStory = () => {
                     </Grid>
 
                     {/* Image Side */}
-                    <Grid item xs={12} md={6}>
+                    {/* <Grid item xs={12} md={6}>
                         <Box
                             sx={{
                                 position: "relative",
@@ -56,7 +56,7 @@ const OurStory = () => {
                                 }}
                             />
                         </Box>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Container>
         </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Container, Typography, Stack, Collapse, IconButton } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -25,7 +25,6 @@ const values = [
 ];
 
 const MissionVision = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
 
     return (
         <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
@@ -51,18 +50,10 @@ const MissionVision = () => {
                     {values.map((item, index) => (
                         <Box
                             key={index}
-                            onMouseEnter={() => setActiveIndex(index)}
                             sx={{
                                 borderBottom: "1px solid rgba(255,255,255,0.1)",
                                 py: 6,
-                                cursor: "pointer",
-                                transition: "all 0.4s ease",
-                                opacity: activeIndex === index ? 1 : 0.5,
-                                "&:hover": {
-                                    opacity: 1,
-                                    bgcolor: "rgba(255,255,255,0.02)",
-                                    pl: 2
-                                }
+                                opacity: 1,
                             }}
                         >
                             <Stack
@@ -72,10 +63,10 @@ const MissionVision = () => {
                                 spacing={4}
                             >
                                 <Stack direction="row" alignItems="center" spacing={4} sx={{ width: { md: "40%" } }}>
-                                    <Typography variant="h6" sx={{ color: "rgba(255,255,255,0.3)", fontWeight: 700 }}>
+                                    <Typography variant="h6" sx={{ color: "rgba(255,255,255,0.5)", fontWeight: 700 }}>
                                         0{index + 1}
                                     </Typography>
-                                    <Typography variant="h3" sx={{ fontWeight: 600, fontSize: { xs: "2rem", md: "2.5rem" } }}>
+                                    <Typography variant="h3" sx={{ fontWeight: 600, fontSize: { xs: "2rem", md: "2.5rem" }, color: "#fff" }}>
                                         {item.title}
                                     </Typography>
                                 </Stack>
@@ -92,7 +83,7 @@ const MissionVision = () => {
                                     >
                                         {item.icon}
                                     </Box>
-                                    <Typography variant="h6" sx={{ fontWeight: 300, lineHeight: 1.6, color: "grey.300" }}>
+                                    <Typography variant="h6" sx={{ fontWeight: 300, lineHeight: 1.6, color: "#fff" }}>
                                         {item.description}
                                     </Typography>
                                 </Box>

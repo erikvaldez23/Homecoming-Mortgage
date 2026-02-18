@@ -1,220 +1,306 @@
 import React from 'react';
-import { Box, Typography, Button, Stack, Container, Paper } from '@mui/material';
+import { Box, Typography, Button, Stack, Container, Paper, useTheme, useMediaQuery } from '@mui/material';
+import { motion } from 'framer-motion';
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Hero = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 10
+            }
+        }
+    };
+
     return (
         <Box
             sx={{
                 position: 'relative',
-                minHeight: '100dvh', // Dynamic viewport height for mobile
+                minHeight: '100dvh',
                 width: '100vw',
                 display: 'flex',
-                alignItems: { xs: 'center', md: 'center' }, // Centered layout like Homely
-                justifyContent: 'center', // Centered layout
-                // backgroundImage: 'url(/landing/hero-bg.png)',
-                background: '#0a0a0a',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'radial-gradient(circle at 50% 50%, #1a2c4e 0%, #0a0a0a 100%)',
                 overflow: 'hidden',
                 color: '#fff',
                 textAlign: 'left',
-                pt: { xs: 8, md: 0 } // Add padding top for mobile to prevent overlap with fixed header
+                pt: { xs: 10, md: 0 }
             }}
         >
-            {/* Overlay */}
+            {/* Ambient Background Elements */}
             <Box
+                component={motion.div}
+                animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
                 sx={{
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    // background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)', // Dark overlay
-                    zIndex: 1,
+                    top: '-10%',
+                    right: '-5%',
+                    width: '600px',
+                    height: '600px',
+                    background: 'radial-gradient(circle, rgba(0, 98, 204, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                    filter: 'blur(60px)',
+                    zIndex: 0,
+                }}
+            />
+            <Box
+                component={motion.div}
+                animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.2, 0.4, 0.2],
+                }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                }}
+                sx={{
+                    position: 'absolute',
+                    bottom: '-10%',
+                    left: '-10%',
+                    width: '700px',
+                    height: '700px',
+                    background: 'radial-gradient(circle, rgba(144, 202, 249, 0.1) 0%, rgba(0,0,0,0) 70%)',
+                    filter: 'blur(80px)',
+                    zIndex: 0,
                 }}
             />
 
+
             {/* Main Content */}
             <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 2 }}>
-                {/* <Typography
-                    variant="h5"
-                    sx={{
-                        color: 'primary.main',
-                        fontFamily: 'Inter, sans-serif',
-                        fontSize: '1rem',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em',
-                        mb: 3,
-                        fontWeight: 700,
-                    }}
-                >
-                    Homecoming Mortgage
-                </Typography> */}
-
-                <Typography
-                    variant="h1"
-                    sx={{
-                        fontFamily: 'Inter, sans-serif',
-                        fontSize: { xs: 'clamp(2.5rem, 8vw, 3.5rem)', md: '5rem' }, // Responsive font size
-                        fontWeight: 800,
-                        lineHeight: 1.1,
-                        mb: 4,
-                        letterSpacing: '-0.02em',
-                        color: '#fff',
-                    }}
-                >
-                    Your Personal<br />
-                    <Box component="span" sx={{ color: 'rgba(255,255,255,0.7)' }}>Path to Home Ownership.</Box>
-                </Typography>
-
-                <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.7)', mb: 6, maxWidth: '600px', fontSize: '1.2rem', lineHeight: 1.6 }}>
-                    For personalized pricing and rates, please call us directly.
-                    Ready to move forward? Start your application online today.
-                </Typography>
-
                 <Stack
-                    direction={{ xs: 'column', sm: 'row' }}
-                    spacing={2}
-                    justifyContent="leftr"
-                    sx={{ mb: 8 }}
+                    component={motion.div}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    spacing={4}
+                    maxWidth="900px"
                 >
-                    <Button
-                        component="a"
-                        href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            bgcolor: 'primary.main',
-                            color: '#fff',
-                            px: 5,
-                            py: 2,
-                            fontSize: '1.1rem',
-                            "&:hover": {
-                                bgcolor: '#fff',
-                                color: '#000',
-                            }
-                        }}
+                    <Box component={motion.div} variants={itemVariants}>
+                        <Typography
+                            variant="h1"
+                            sx={{
+                                fontFamily: 'Inter, sans-serif',
+                                fontSize: { xs: 'clamp(2.5rem, 8vw, 4rem)', md: '5.5rem' },
+                                fontWeight: 800,
+                                lineHeight: 1.05,
+                                letterSpacing: '-0.03em',
+                                color: '#fff',
+                                textShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                            }}
+                        >
+                            Your Personal<br />
+                            <Box
+                                component="span"
+                                sx={{
+                                    background: "linear-gradient(90deg, #fff 0%, #90caf9 100%)",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                    display: "inline-block"
+                                }}
+                            >
+                                Path to Home Ownership.
+                            </Box>
+                        </Typography>
+                    </Box>
+
+                    <Box component={motion.div} variants={itemVariants}>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                color: 'rgba(255,255,255,0.8)',
+                                fontSize: { xs: '1.1rem', md: '1.35rem' },
+                                lineHeight: 1.6,
+                                maxWidth: '650px',
+                                fontWeight: 300
+                            }}
+                        >
+                            For personalized pricing and rates, please call us directly. Ready to move forward? Start your application online today.
+                        </Typography>
+                    </Box>
+
+                    <Stack
+                        component={motion.div}
+                        variants={itemVariants}
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={2}
+                        sx={{ pt: 2 }}
                     >
-                        Apply Now
-                    </Button>
-                    <Button
-                        component="a"
-                        href="tel:+19723390630"
-                        variant="outlined"
-                        size="large"
-                        sx={{
-                            color: '#fff',
-                            borderColor: 'rgba(255,255,255,0.3)',
-                            px: 5,
-                            py: 2,
-                            fontSize: '1.1rem',
-                            backdropFilter: 'blur(10px)',
-                            bgcolor: 'rgba(255,255,255,0.05)',
-                            '&:hover': { bgcolor: '#fff', color: '#000', },
-                        }}
-                    >
-                        Call for Rates
-                    </Button>
+                        <Button
+                            component={motion.a}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="contained"
+                            size="large"
+                            endIcon={<ArrowForwardIcon />}
+                            sx={{
+                                bgcolor: '#0062cc',
+                                color: '#fff',
+                                px: 5,
+                                py: 2.2,
+                                fontSize: '1.1rem',
+                                borderRadius: '50px',
+                                boxShadow: '0 0 20px rgba(0, 98, 204, 0.4)',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                textTransform: 'none',
+                                fontWeight: 600,
+                                "&:hover": {
+                                    bgcolor: '#0052cc',
+                                    boxShadow: '0 0 30px rgba(0, 98, 204, 0.6)',
+                                    color: "#fff"
+                                }
+                            }}
+                        >
+                            Apply Now
+                        </Button>
+                        <Button
+                            component={motion.a}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            href="tel:+19723390630"
+                            variant="outlined"
+                            size="large"
+                            sx={{
+                                color: '#fff',
+                                borderColor: 'rgba(255,255,255,0.2)',
+                                px: 5,
+                                py: 2.2,
+                                fontSize: '1.1rem',
+                                borderRadius: '50px',
+                                backdropFilter: 'blur(10px)',
+                                bgcolor: 'rgba(255,255,255,0.03)',
+                                textTransform: 'none',
+                                fontWeight: 600,
+                                '&:hover': {
+                                    borderColor: '#fff',
+                                    bgcolor: 'rgba(255,255,255,0.1)',
+                                    color: "#fff"
+                                },
+                            }}
+                        >
+                            Call for Rates
+                        </Button>
+                    </Stack>
                 </Stack>
             </Container>
 
-            {/* Contact Info Card */}
+            {/* Floating Glass Contact Card */}
             <Paper
+                component={motion.div}
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8, type: "spring" }}
                 elevation={0}
                 sx={{
-                    position: 'absolute', // Always absolute to stay at bottom/out of way
+                    position: 'absolute',
                     bottom: { xs: '20px', md: '40px' },
-                    right: { xs: '50%', md: '20px' },
-                    transform: { xs: 'translateX(50%)', md: 'none' }, // Center on mobile
-                    width: { xs: '95%', sm: 'auto', md: 'auto' }, // Wide on mobile
-                    mt: 0,
-                    bgcolor: { xs: 'rgba(2, 13, 28, 0.9)', md: 'rgba(2, 13, 28, 0.8)' },
-                    backdropFilter: 'blur(12px)',
-                    color: '#fff',
-                    borderRadius: 4,
-                    p: { xs: 2, md: 4 }, // Reduce padding on mobile
+                    right: { xs: '50%', md: '40px' },
+                    transform: { xs: 'translateX(50%)', md: 'none' },
+                    bgcolor: 'rgba(10, 25, 41, 0.7)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '24px',
+                    p: { xs: 2.5, md: 3 },
                     display: 'flex',
-                    flexDirection: 'row', // Always row
                     alignItems: 'center',
-                    justifyContent: { xs: 'space-around', md: 'flex-start' }, // Spread on mobile
-                    gap: { xs: 1, md: 4 },
-                    zIndex: 2,
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    maxWidth: { xs: '100%', md: 'auto' },
-                    mx: 0,
-                    cursor: 'default',
-                    whiteSpace: 'nowrap',
-                    overflowX: 'auto', // Scroll if too small
-                    '::-webkit-scrollbar': { display: 'none' } // Hide scrollbar
+                    gap: { xs: 3, md: 5 },
+                    zIndex: 10,
+                    width: { xs: '90%', sm: 'auto' },
+                    maxWidth: { xs: '400px', sm: 'auto' },
+                    justifyContent: 'space-around',
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.4)',
                 }}
             >
-                {/* Call */}
-                <Box
-                    component="a"
+                <ContactItem
+                    icon={<PhoneInTalkOutlinedIcon />}
+                    label="Call Us"
                     href="tel:+19723390630"
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: 1,
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        transition: 'transform 0.2s',
-                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
-                    }}
-                >
-                    <PhoneInTalkOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Call Us</Typography>
-                </Box>
-
-                {/* Email */}
-                <Box
-                    component="a"
+                />
+                <Divider />
+                <ContactItem
+                    icon={<EmailOutlinedIcon />}
+                    label="Email Us"
                     href="mailto:Pirouz@mortgagehmc.com"
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: 1,
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        transition: 'transform 0.2s',
-                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
-                    }}
-                >
-                    <EmailOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Email Us</Typography>
-                </Box>
-
-                {/* Schedule */}
-                <Box
-                    component="a"
+                />
+                <Divider />
+                <ContactItem
+                    icon={<CalendarMonthOutlinedIcon />}
+                    label="Schedule"
                     href="/contact"
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: 1,
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        transition: 'transform 0.2s',
-                        '&:hover': { transform: 'scale(1.1)', color: 'primary.main' }
-                    }}
-                >
-                    <CalendarMonthOutlinedIcon sx={{ fontSize: { xs: '1.5rem', md: '1.8rem' }, color: 'primary.main' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Schedule</Typography>
-                </Box>
-
-
+                    internal
+                />
             </Paper>
         </Box>
     );
 };
+
+const Divider = () => (
+    <Box sx={{ width: '1px', height: '30px', bgcolor: 'rgba(255,255,255,0.1)', display: { xs: 'none', sm: 'block' } }} />
+);
+
+const ContactItem = ({ icon, label, href, internal }) => (
+    <Box
+        component="a"
+        href={href}
+        sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 0.8,
+            textDecoration: 'none',
+            color: 'rgba(255,255,255,0.7)',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            '&:hover': {
+                color: '#fff',
+                transform: 'translateY(-2px)'
+            }
+        }}
+    >
+        <Box sx={{
+            color: '#fff',
+            '& svg': { fontSize: '1.6rem' }
+        }}>
+            {icon}
+        </Box>
+        <Typography variant="caption" sx={{ fontWeight: 600, fontSize: '0.75rem', letterSpacing: '0.02em' }}>
+            {label}
+        </Typography>
+    </Box>
+);
 
 export default Hero;
