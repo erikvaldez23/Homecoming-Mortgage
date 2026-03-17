@@ -6,17 +6,17 @@ const offers = [
     {
         title: "1-0 BUYDOWN Refinance",
         description: "While the market continues to improve, take advantage of the 1-0 buydown option and save a considerable amount on your monthly payment until you are able to switch to a fixed rate (Buydown & Closing costs covered).",
-        expiry: "Valid until Dec 31, 2025",
+        expiry: "Currently Valid",
         code: "1-0BUYDOWN",
         color: "#0062cc",
     },
-    // {
-    //     title: "Refinance Rate Drop",
-    //     description: "Lock in a rate 0.25% lower than advertised when you switch from another lender.",
-    //     expiry: "Valid for applications submitted this month",
-    //     code: "SWITCH&SAVE",
-    //     color: "#7c3aed",
-    // },
+    {
+        title: "2-1 Buydown Refinance",
+        description: "Similar to the 1-0 buydown, this option reduces the interest rate for an additional year (ex: 4% yr 1, 5% yr 2, 6% yr 3). Escrow required.",
+        expiry: "Currently Valid",
+        code: "2-1BUYDOWN",
+        color: "#7c3aed",
+    },
     // {
     //     title: "Eco-Friendly Home Bonus",
     //     description: "Buying an energy-efficient home? Receive a free appraisal and discounted origination fees.",
@@ -31,7 +31,7 @@ const CurrentOffers = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
+        <Box sx={{ py: 15, color: "#fff" }}>
             <Container maxWidth="lg">
                 <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
                     <Typography

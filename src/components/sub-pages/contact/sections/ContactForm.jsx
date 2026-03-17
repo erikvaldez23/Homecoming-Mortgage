@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Box, Typography, TextField, MenuItem, Button } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 
-const INPUT_BORDER = "rgba(255, 255, 255, 0.08)";
+const INPUT_BORDER = "rgba(255, 255, 255, 0.25)";
 
 const FormContainer = styled(Box)(({ theme }) => ({
-    backgroundColor: "#0a0a0a",
+    // backgroundColor: "#0a0a0a",
     margin: "0 auto",
     color: "#fff",
     padding: theme.spacing(4),
@@ -15,7 +15,7 @@ const FormContainer = styled(Box)(({ theme }) => ({
 }));
 
 const FieldLabel = styled(Typography)({
-    color: "rgba(255, 255, 255, 0.5)",
+    color: "rgba(255, 255, 255, 0.85)",
     fontSize: "0.85rem",
     marginBottom: "8px",
     marginLeft: "4px",
@@ -30,17 +30,17 @@ const DarkInput = styled(TextField)({
             borderColor: INPUT_BORDER,
         },
         "&:hover fieldset": {
-            borderColor: "rgba(255, 255, 255, 0.2)",
+            borderColor: "rgba(255, 255, 255, 0.5)",
         },
         "&.Mui-focused fieldset": {
-            borderColor: "rgba(255, 255, 255, 0.3)",
+            borderColor: "rgba(255, 255, 255, 0.8)",
         },
     },
     "& .MuiInputBase-input": {
         padding: "16px",
         fontSize: "1rem",
         "&::placeholder": {
-            color: "rgba(255, 255, 255, 0.2)",
+            color: "rgba(255, 255, 255, 0.4)",
             opacity: 1,
         },
     },

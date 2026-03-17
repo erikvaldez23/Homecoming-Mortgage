@@ -96,7 +96,7 @@ const Testimonials = () => {
     };
 
     return (
-        <Box id="reviews" sx={{ py: 20, textAlign: "center", bgcolor: "#0a0a0a" }}>
+        <Box id="reviews" sx={{ py: 20, textAlign: "center" }}>
             <Container maxWidth="lg">
                 <Box textAlign="center" mb={12} sx={{ borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
                     <Typography

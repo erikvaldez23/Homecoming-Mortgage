@@ -5,11 +5,13 @@ import { motion } from "framer-motion";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 
 // --- Styled Components ---
 
 const GlassCard = styled(motion.div)({
-    background: "rgba(255, 255, 255, 0.03)",
+    // background: "rgba(255, 255, 255, 0.03)",
     backdropFilter: "blur(20px)",
     borderRadius: "24px",
     border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -41,7 +43,7 @@ const ContactDetails = () => {
         <Box sx={{
             pt: 7,
             pb: 15,
-            bgcolor: "#0a0a0a",
+            // bgcolor: "#0a0a0a",
             color: "#fff",
             position: "relative",
             overflow: "hidden",
@@ -83,7 +85,9 @@ const ContactDetails = () => {
                                 {[
                                     { icon: <LocalPhoneOutlinedIcon />, label: "Call Us", value: "(972) 339-0630" },
                                     { icon: <EmailOutlinedIcon />, label: "Email Us", value: "Pirouz@mortgagehmc.com" },
-                                    { icon: <LocationOnOutlinedIcon />, label: "Visit Us", value: "13601 Preston Rd. Suite 102E, Dallas, TX 75240" }
+                                    { icon: <LocationOnOutlinedIcon />, label: "Visit Us", value: "13601 Preston Rd. Suite 102E, Dallas, TX 75240" },
+                                    { icon: <BusinessOutlinedIcon />, label: "Company NMLS", value: "2582358" },
+                                    { icon: <BadgeOutlinedIcon />, label: "Individual NMLS", value: "1641846" }
                                 ].map((item, index) => (
                                     <motion.div key={index} variants={itemVariants} whileHover={{ x: 10, transition: { duration: 0.2 } }}>
                                         <Stack direction="row" spacing={3} alignItems="center">

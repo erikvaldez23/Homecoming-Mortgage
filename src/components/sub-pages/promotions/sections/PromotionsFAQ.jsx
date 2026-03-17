@@ -5,20 +5,20 @@ import RemoveIcon from "@mui/icons-material/Remove";
 
 const faqs = [
     {
-        question: "Do these promotions expire?",
-        answer: "Yes, most promotions have an expiration date. Please check the specific terms on the offer card or contact a loan officer for details.",
+        question: "How often can I refinance?",
+        answer: "After any purchase or refinance, you must wait a minimum of 6 months before you can refinance again. This means there must be a 6 month gap from the closing of your purchase/refinance to the closing of the new refinance.",
     },
     {
-        question: "Can I combine multiple offers?",
-        answer: "Generally, offers cannot be combined unless explicitly stated. Our team will help you apply the single best promotion for your scenario.",
+        question: "What happens to my escrow account with my current lender when I refinance to a different lender?",
+        answer: "After your closing, your previous lender will reimburse you the full amount of your escrow balance you had with them.",
     },
     {
-        question: "How do I redeem a promo code?",
-        answer: "Mention the promo code to your loan officer during your initial consultation or application process.",
+        question: "Do you charge any fees for processing my loan?",
+        answer: "There are no fees on my end for processing and submitting your loan to the lender.This includes any application & origination fees.The only fee involved is the underwriting fee which goes to the lender.",
     },
     {
-        question: "Are these offers available for all loan types?",
-        answer: "Some offers are specific to FHA, VA, or Conventional loans. Eligibility requirements apply to all promotions.",
+        question: "What documents will I need to provide?",
+        answer: "When you are ready to proceed, I will provide you a list of required documents for your home purchase/refinance.",
     },
 ];
 
@@ -26,7 +26,7 @@ const PromotionsFAQ = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <Box sx={{ py: 15, bgcolor: "#0a0a0a", color: "#fff" }}>
+        <Box sx={{ py: 15, color: "#fff" }}>
             <Container maxWidth="lg">
                 <Typography
                     variant="h2"

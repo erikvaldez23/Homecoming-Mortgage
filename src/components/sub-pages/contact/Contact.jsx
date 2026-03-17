@@ -16,7 +16,7 @@ const Contact = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    bgcolor: "#0a0a0a",
+                    // bgcolor: "#0a0a0a",
                     overflow: "hidden",
                 }}
             >
