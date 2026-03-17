@@ -236,7 +236,7 @@ const Hero = () => {
                     border: '1px solid rgba(255,255,255,0.08)',
                     borderRadius: '24px',
                     p: { xs: 2.5, md: 3 },
-                    display: 'flex',
+                    display: { xs: 'none', md: 'flex' },
                     alignItems: 'center',
                     gap: { xs: 3, md: 5 },
                     zIndex: 10,
