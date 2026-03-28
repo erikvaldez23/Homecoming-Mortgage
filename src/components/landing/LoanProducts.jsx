@@ -27,7 +27,7 @@ const loanProductsData = [
     {
         id: '04',
         title: 'DSCR',
-        description: 'Apply for a mortgage through your LLC or S Corp',
+        description: 'Apply for a mortgage through your LLC or Corporation',
         icon: <VillaOutlinedIcon sx={{ fontSize: 32 }} />,
     }
 ];
