@@ -93,9 +93,9 @@ const Footer = () => {
           {/* Column 3: Legal & Policy */}
           <Grid item xs={12} md={4} lg={3} sx={{ textAlign: { xs: 'center', md: 'left' }, display: { xs: 'none', md: 'block' } }}>
             <Box component={Link} to="/privacy" sx={linkStyles}>Privacy Policy</Box>
-            <Box component="a" href="/#/contact" sx={linkStyles}>Contact Us</Box>
+            <Box component={Link} to="/contact" sx={linkStyles}>Contact Us</Box>
             <Box component="a" href="https://texasfinancialresourcemgmt1.proiwebsites.com/loanportal/login" sx={linkStyles}>Apply Now</Box>
-            <Box component="a" href="/#/about" sx={linkStyles}>About Us</Box>
+            <Box component={Link} to="/about" sx={linkStyles}>About Us</Box>
           </Grid>
         </Grid>
 

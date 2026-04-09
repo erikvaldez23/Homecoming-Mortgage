@@ -35,7 +35,7 @@ const Hero = () => {
     };
 
     return (
-        <Box
+        <Box component="section"
             sx={{
                 position: 'relative',
                 minHeight: '100dvh',

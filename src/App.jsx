@@ -1,5 +1,6 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useRef, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider, Helmet } from "react-helmet-async";
+import React, { useRef, useState, Suspense, lazy } from "react";
 import { createTheme, ThemeProvider, Box, Dialog, IconButton } from "@mui/material";
 import "./App.css";
 
@@ -12,17 +13,17 @@ import Footer from "./components/global/Footer";
 
 // Landing Page
 import Hero from "./components/landing/Hero";
-import Services from "./components/landing/Services";
-// import About from "./components/landing/About"; // Old About component
-import LoanProducts from "./components/landing/LoanProducts";
-import Testimonials from "./components/landing/Testimonials";
 import CTA from "./components/global/CTA";
 
+const Services = lazy(() => import("./components/landing/Services"));
+const LoanProducts = lazy(() => import("./components/landing/LoanProducts"));
+const Testimonials = lazy(() => import("./components/landing/Testimonials"));
+
 // Sub Pages
-import AboutPage from "./components/sub-pages/about/About";
-import PromotionsPage from "./components/sub-pages/promotions/Promotions";
-import ContactPage from "./components/sub-pages/contact/Contact";
-import PrivacyPolicy from "./components/sub-pages/policy/PrivacyPolicy";
+const AboutPage = lazy(() => import("./components/sub-pages/about/About"));
+const PromotionsPage = lazy(() => import("./components/sub-pages/promotions/Promotions"));
+const ContactPage = lazy(() => import("./components/sub-pages/contact/Contact"));
+const PrivacyPolicy = lazy(() => import("./components/sub-pages/policy/PrivacyPolicy"));
 
 const theme = createTheme({
   palette: {
@@ -74,34 +75,44 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <Helmet>
+          <title>Homecoming Mortgage | Texas Home Loans & Refinancing</title>
+          <meta name="description" content="Homecoming Mortgage provides personalized home loans, refinancing options, and mortgage rates tailored for you in Dallas, TX and beyond." />
+          <meta property="og:title" content="Homecoming Mortgage | Texas Home Loans & Refinancing" />
+          <meta property="og:description" content="Homecoming Mortgage provides personalized home loans, refinancing options, and mortgage rates tailored for you in Dallas, TX and beyond." />
+          <meta property="og:type" content="website" />
+        </Helmet>
+        <Box component="main" sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
         <Router>
           <ScrollToTop />
           <Topbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Hero />
-                  <Services />
-                  {/* <About /> */}
-                  <LoanProducts />
-                  <Testimonials />
-                  <CTA />
-                </>
-              }
-            />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/promotions" element={<PromotionsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-          </Routes>
+          <Suspense fallback={<Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0062cc', fontSize: '1.2rem', fontWeight: 600 }}>Loading...</Box>}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <Services />
+                    <LoanProducts />
+                    <Testimonials />
+                    <CTA />
+                  </>
+                }
+              />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/promotions" element={<PromotionsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+            </Routes>
+          </Suspense>
           <Footer />
         </Router>
-      </Box>
-    </ThemeProvider>
+        </Box>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

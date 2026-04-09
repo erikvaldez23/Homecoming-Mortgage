@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
+import { Helmet } from "react-helmet-async";
 import CallToAction from "../../global/CTA";
 import ContactForm from "./sections/ContactForm";
 import ContactDetails from "./sections/ContactDetails";
 
 const Contact = () => {
     return (
-        <Box sx={{ width: "100%", overflowX: "hidden" }}>
+        <Box component="section" sx={{ width: "100%", overflowX: "hidden" }}>
+            <Helmet>
+                <title>Contact Us | Homecoming Mortgage</title>
+                <meta name="description" content="Get in touch with Homecoming Mortgage to discuss your home financing options. Call, email, or visit our Dallas office." />
+            </Helmet>
             {/* Hero Section */}
             <Box
                 sx={{

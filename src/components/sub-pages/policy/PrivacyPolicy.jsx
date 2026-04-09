@@ -1,10 +1,15 @@
 import React from 'react';
 import { Box, Container, Typography, Stack, Paper, Divider } from '@mui/material';
+import { Helmet } from "react-helmet-async";
 import CTA from '../../global/CTA';
 
 const PrivacyPolicy = () => {
     return (
-        <Box sx={{ width: "100%", overflowX: "hidden" }}>
+        <Box component="section" sx={{ width: "100%", overflowX: "hidden" }}>
+            <Helmet>
+                <title>Privacy Policy | Homecoming Mortgage</title>
+                <meta name="description" content="Review the privacy policy of Homecoming Mortgage to understand how we protect and manage your personal data." />
+            </Helmet>
             {/* Header */}
             <Box
                 sx={{
