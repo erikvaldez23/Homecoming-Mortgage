@@ -4,7 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const offers = [
     {
-        title: "1-0 BUYDOWN Refinance",
+        title: "1-0 Buydown Refinance",
         description: "While the market continues to improve, take advantage of the 1-0 buydown option and save a considerable amount on your monthly payment until you are able to switch to a fixed rate (Buydown & Closing costs covered).",
         expiry: "Currently Valid",
         code: "1-0BUYDOWN",
@@ -102,6 +102,8 @@ const CurrentOffers = () => {
                                 {/* Right: Action */}
                                 <Box sx={{ width: { md: "20%" }, textAlign: "right" }}>
                                     <Button
+                                        component="a"
+                                        href="mailto:Pirouz@mortgagehmc.com"
                                         endIcon={<ArrowForwardIcon />}
                                         sx={{
                                             color: "#fff",

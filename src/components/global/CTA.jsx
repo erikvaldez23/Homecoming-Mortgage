@@ -1,6 +1,6 @@
 // src/components/global/CTA.jsx
 import React, { useMemo, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -57,13 +57,14 @@ const CTA_REGISTRY = {
 export default function CallToAction({
   formUrl = "/contact",
   useModal = false,
-  phoneHref = "tel:+18005550000",
+  phoneHref = "tel:+19729916115",
   onCtaClick,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { serviceId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [openModal, setOpenModal] = useState(false);
 
   const copy = useMemo(
@@ -82,6 +83,8 @@ export default function CallToAction({
     }
     if (/^https?:\/\//i.test(formUrl)) {
       window.location.href = formUrl;
+    } else if (location.pathname === formUrl) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       navigate(formUrl);
     }

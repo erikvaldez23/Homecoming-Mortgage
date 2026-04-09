@@ -4,30 +4,50 @@ import CTA from '../../global/CTA';
 
 const PrivacyPolicy = () => {
     return (
-        <Box sx={{ bgcolor: '#0a0a0a', color: '#fff', minHeight: '100vh', pt: 15, pb: 10 }}>
-            <Container maxWidth="lg" sx={{ mb: 10 }}>
-                {/* Header */}
-                <Box sx={{ mb: 8, textAlign: 'center' }}>
+        <Box sx={{ width: "100%", overflowX: "hidden" }}>
+            {/* Header */}
+            <Box
+                sx={{
+                    position: "relative",
+                    pt: 20,
+                    pb: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                }}
+            >
+                <Container maxWidth="xl" sx={{ textAlign: "center" }}>
                     <Typography
                         variant="h1"
                         sx={{
-                            fontFamily: 'Inter, sans-serif',
-                            fontSize: { xs: '2.5rem', md: '4rem' },
                             fontWeight: 800,
-                            mb: 2,
-                            letterSpacing: '-0.02em',
-                            background: "linear-gradient(90deg, #fff, #90caf9)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
+                            fontSize: { xs: "12vw", md: "9vw" },
+                            lineHeight: 0.9,
+                            mb: 4,
+                            color: "#0062cc",
+                            letterSpacing: "-0.04em",
                         }}
                     >
                         Privacy Policy
                     </Typography>
-                    <Typography variant="h6" sx={{ color: 'grey.500', maxWidth: '800px', mx: 'auto', lineHeight: 1.6 }}>
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            color: "#fff",
+                            maxWidth: 800,
+                            mx: "auto",
+                            lineHeight: 1.6,
+                            opacity: 0.8,
+                            fontWeight: 400
+                        }}
+                    >
                         Your privacy is important to us. This policy outlines how we collect, use, and protect your personal information.
                     </Typography>
-                </Box>
+                </Container>
+            </Box>
 
+            <Container maxWidth="lg" sx={{ mb: 10 }}>
                 {/* Content */}
                 <Paper
                     elevation={0}

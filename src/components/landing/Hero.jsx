@@ -257,13 +257,13 @@ const Hero = () => {
                     label="Email Us"
                     href="mailto:Pirouz@mortgagehmc.com"
                 />
-                <Divider />
+                {/* <Divider />
                 <ContactItem
                     icon={<CalendarMonthOutlinedIcon />}
                     label="Schedule"
                     href="/contact"
                     internal
-                />
+                /> */}
             </Paper>
         </Box>
     );
