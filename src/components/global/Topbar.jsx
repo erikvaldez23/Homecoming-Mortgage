@@ -284,7 +284,7 @@ export default function Topbar() {
 
           {/* Drawer Footer */}
           <Box sx={{ p: 4 }}>
-            <Stack direction="row" spacing={3} justifyContent="center" sx={{ mb: 4 }}>
+            {/* <Stack direction="row" spacing={3} justifyContent="center" sx={{ mb: 4 }}>
               <IconButton
                 component="a"
                 href="#"
@@ -307,7 +307,7 @@ export default function Topbar() {
               >
                 <FacebookIcon />
               </IconButton>
-            </Stack>
+            </Stack> */}
 
             <Button
               fullWidth

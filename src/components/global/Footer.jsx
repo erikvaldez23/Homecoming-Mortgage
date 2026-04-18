@@ -65,7 +65,7 @@ const Footer = () => {
             </Box>
 
             {/* Desktop Socials */}
-            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {/* <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <FacebookIcon fontSize="small" />
               </IconButton>
@@ -78,7 +78,7 @@ const Footer = () => {
               <IconButton size="small" sx={{ color: BRAND_BLUE, p: 0, pr: 1, "&:hover": { color: "#ffffff", backgroundColor: "transparent" } }}>
                 <LinkedInIcon fontSize="small" />
               </IconButton>
-            </Stack>
+            </Stack> */}
           </Grid>
 
           {/* Column 2: Address */}

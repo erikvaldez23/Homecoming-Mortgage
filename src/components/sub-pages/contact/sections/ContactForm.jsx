@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, MenuItem, Button } from "@mui/material";
+import { Box, Typography, TextField, MenuItem, Button, Alert, CircularProgress } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 
 const INPUT_BORDER = "rgba(255, 255, 255, 0.25)";
@@ -75,14 +75,43 @@ export default function ContactForm() {
         message: ""
     });
 
+    const [status, setStatus] = useState({ type: "", message: "" });
+    const [loading, setLoading] = useState(false);
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle submit logic
-        console.log(formData);
+        setLoading(true);
+        setStatus({ type: "", message: "" });
+
+        if (!formData.name || !formData.email || !formData.message) {
+            setStatus({ type: "error", message: "Please fill out all required fields." });
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus({ type: "success", message: "Thank you! Your message has been sent successfully." });
+                setFormData({ name: "", email: "", phone: "", location: "", service: "", message: "" });
+            } else {
+                setStatus({ type: "error", message: "Failed to send message. Please try again later." });
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setStatus({ type: "error", message: "An error occurred. Please check your connection and try again." });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -93,6 +122,11 @@ export default function ContactForm() {
 
             <form onSubmit={handleSubmit}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                    {status.message && (
+                        <Alert severity={status.type} sx={{ borderRadius: 2 }}>
+                            {status.message}
+                        </Alert>
+                    )}
 
                     <Box>
                         <FieldLabel>Name</FieldLabel>
@@ -192,8 +226,8 @@ export default function ContactForm() {
                         />
                     </Box>
 
-                    <SubmitButton type="submit">
-                        Submit
+                    <SubmitButton type="submit" disabled={loading}>
+                        {loading ? <CircularProgress size={24} color="inherit" /> : "Submit"}
                     </SubmitButton>
                 </Box>
             </form>

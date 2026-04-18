@@ -280,7 +280,7 @@ const Testimonials = () => {
                     )
                 }
 
-                <Box sx={{ mt: 10, pt: 8, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                {/* <Box sx={{ mt: 10, pt: 8, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                     <Typography variant="h4" sx={{ color: "#fff", fontWeight: 700, mb: 2, fontSize: { xs: "1.5rem", md: "2rem" } }}>
                         Had a great experience working with us?
                     </Typography>
@@ -315,7 +315,7 @@ const Testimonials = () => {
                     >
                         Submit a Review
                     </Button>
-                </Box>
+                </Box> */}
             </Container >
         </Box >
     );

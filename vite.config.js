@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true, // Allow network access for mobile testing
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   build: {
     target: 'es2015', // Ensure compatibility with slightly older mobile browsers
