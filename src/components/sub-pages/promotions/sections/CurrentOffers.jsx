@@ -31,14 +31,14 @@ const CurrentOffers = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <Box sx={{ py: 15, color: "#fff" }}>
+        <Box sx={{ py: 8, color: "#fff" }}>
             <Container maxWidth="lg">
-                <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 6, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
                     <Typography
                         variant="h2"
                         sx={{
                             fontWeight: 800,
-                            fontSize: { xs: "3rem", md: "4rem" },
+                            fontSize: { xs: "2.5rem", md: "3rem" },
                             letterSpacing: "-0.03em",
                             background: "linear-gradient(90deg, #fff, #90caf9)",
                             WebkitBackgroundClip: "text",

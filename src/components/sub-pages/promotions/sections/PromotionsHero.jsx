@@ -6,23 +6,22 @@ const PromotionsHero = () => {
         <Box
             sx={{
                 position: "relative",
-                pt: 20,
-                pb: 10,
+                pt: 15,
+                pb: 6,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // bgcolor: "#0a0a0a",
                 overflow: "hidden",
             }}
         >
-            <Container maxWidth="xl" sx={{ textAlign: "center" }}>
+            <Container maxWidth="lg" sx={{ textAlign: "center" }}>
                 <Typography
                     variant="h1"
                     sx={{
                         fontWeight: 800,
-                        fontSize: { xs: "12vw", md: "9vw" },
-                        lineHeight: 0.9,
-                        mb: 4,
+                        fontSize: { xs: "3.5rem", md: "5rem" },
+                        lineHeight: 1.1,
+                        mb: 2,
                         color: "#0062cc",
                         letterSpacing: "-0.04em",
                     }}
@@ -33,11 +32,12 @@ const PromotionsHero = () => {
                     variant="h5"
                     sx={{
                         color: "#fff",
-                        maxWidth: 800,
+                        maxWidth: 600,
                         mx: "auto",
                         lineHeight: 1.6,
                         opacity: 0.8,
-                        fontWeight: 400
+                        fontWeight: 400,
+                        fontSize: { xs: "1.1rem", md: "1.25rem" }
                     }}
                 >
                     Exclusive rates and limited-time opportunities to save on your home financing.

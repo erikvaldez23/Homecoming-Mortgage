@@ -26,10 +26,10 @@ const teamMembers = [
 
 const Team = () => {
     return (
-        <Box sx={{ py: 15, bgcolor: "background.default" }}>
+        <Box sx={{ py: 8, bgcolor: "background.default" }}>
             <Container maxWidth="lg">
-                <Box sx={{ textAlign: "center", mb: 10 }}>
-                    <Typography variant="h2" sx={{ fontWeight: 800, mb: 2 }}>
+                <Box sx={{ textAlign: "center", mb: 6 }}>
+                    <Typography variant="h3" sx={{ fontWeight: 800, mb: 2 }}>
                         Meet the Team
                     </Typography>
                     <Typography variant="body1" sx={{ color: "text.secondary", maxWidth: 600, mx: "auto" }}>

@@ -30,33 +30,42 @@ transporter.verify((error, success) => {
     }
 });
 
-// 2. The Contact Route
+// Routes
+app.get("/", (req, res) => {
+    res.send("Homecoming Mortgage API is running");
+});
+
+// 2. The Lead Form / Contact Route
 app.post('/api/contact', async (req, res) => {
-    const { name, email, phone, location, service, message } = req.body;
-    console.log(`\n📬 Received Contact Form: ${name} (${email})`);
+    const { name, email, phone, location, service, message, subject } = req.body;
+    console.log(`\n📬 Received Lead Form: ${name} (${email})`);
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
-        subject: `New Contact Form Submission from ${name}`,
+        to: 'erikkvaldez@gmail.com', // Explicitly requested destination
+        subject: subject || `New Lead Form Submission from ${name}`,
         html: `
-            <h3>New Contact Form Submission from Homecoming Mortgage</h3>
-            <p><strong>Name:</strong> ${name || 'N/A'}</p>
-            <p><strong>Email:</strong> ${email || 'N/A'}</p>
-            <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-            <p><strong>Location:</strong> ${location || 'N/A'}</p>
-            <p><strong>Service Requested:</strong> ${service || 'N/A'}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message || 'N/A'}</p>
+            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
+                <h2 style="color: #0062cc; border-bottom: 2px solid #0062cc; padding-bottom: 10px;">New Lead Submission</h2>
+                <p><strong>Name:</strong> ${name || 'N/A'}</p>
+                <p><strong>Email:</strong> ${email || 'N/A'}</p>
+                <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+                <div style="margin-top: 20px;">
+                    <strong>Message:</strong>
+                    <p style="background: #f9f9f9; padding: 15px; border-radius: 5px;">${message || 'N/A'}</p>
+                </div>
+                <hr style="margin-top: 30px; border: 0; border-top: 1px solid #eee;" />
+                <p style="font-size: 0.8rem; color: #777;">Sent from Homecoming Mortgage Lead Form</p>
+            </div>
         `,
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log(`✅ Contact email sent successfully for ${name}`);
+        console.log(`✅ Lead email sent successfully for ${name}`);
         res.status(200).json({ message: 'Email sent successfully!' });
     } catch (error) {
-        console.error('❌ Error sending contact email:', error);
+        console.error('❌ Error sending lead email:', error);
         res.status(500).json({ message: 'Failed to send email.' });
     }
 });

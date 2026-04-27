@@ -26,14 +26,14 @@ const PromotionsFAQ = () => {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <Box sx={{ py: 15, color: "#fff" }}>
-            <Container maxWidth="lg">
+        <Box sx={{ py: 8, color: "#fff" }}>
+            <Container maxWidth="md">
                 <Typography
                     variant="h2"
                     sx={{
                         fontWeight: 800,
-                        mb: 8,
-                        fontSize: { xs: "3rem", md: "4rem" },
+                        mb: 4,
+                        fontSize: { xs: "2.5rem", md: "3rem" },
                         background: "linear-gradient(90deg, #fff, #90caf9)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",

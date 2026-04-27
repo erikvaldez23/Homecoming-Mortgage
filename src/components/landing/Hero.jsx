@@ -47,7 +47,8 @@ const Hero = () => {
                 overflow: 'hidden',
                 color: '#fff',
                 textAlign: 'left',
-                pt: { xs: 10, md: 0 }
+                pt: { xs: 10, md: 0 },
+                zoom: { md: 0.9, xs: 1 },
             }}
         >
             {/* Ambient Background Elements */}

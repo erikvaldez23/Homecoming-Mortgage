@@ -27,7 +27,11 @@ const values = [
 const MissionVision = () => {
 
     return (
-        <Box sx={{ py: 15, color: "#fff" }}>
+        <Box sx={{
+            py: 15,
+            color: "#fff",
+            zoom: { md: 0.9, xs: 1 }, // Zoom out on desktop
+        }}>
             <Container maxWidth="lg">
                 <Box sx={{ mb: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
                     <Typography

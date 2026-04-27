@@ -97,7 +97,8 @@ export default function CallToAction({
         bgcolor: BG_COLOR,
         color: TEXT_LIGHT,
         borderTop: "1px solid rgba(255,255,255,0.05)",
-        overflow: "hidden"
+        overflow: "hidden",
+        zoom: { md: 0.9, xs: 1 }
       }}
     >
       <Container maxWidth={false}>

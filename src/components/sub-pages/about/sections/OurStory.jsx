@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography, Chip } from "@mui/material";
 
 const OurStory = () => {
     return (
-        <Box sx={{ py: 15 }}>
+        <Box sx={{ py: 8, zoom: { md: 0.9, xs: 1 }, }}>
             <Container maxWidth="lg">
                 <Grid container spacing={8} alignItems="center">
                     {/* Text Side */}
@@ -20,7 +20,7 @@ const OurStory = () => {
                                 mb: 3,
                             }}
                         />
-                        <Typography variant="h2" sx={{ fontWeight: 800, mb: 4, lineHeight: 1.2 }}>
+                        <Typography variant="h3" sx={{ fontWeight: 800, mb: 4, lineHeight: 1.2 }}>
                             More than just <br />
                             <Box component="span" sx={{ color: "primary.main" }}>
                                 a lender.

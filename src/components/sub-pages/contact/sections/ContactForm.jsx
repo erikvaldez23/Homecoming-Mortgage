@@ -5,12 +5,11 @@ import { styled, alpha } from "@mui/material/styles";
 const INPUT_BORDER = "rgba(255, 255, 255, 0.25)";
 
 const FormContainer = styled(Box)(({ theme }) => ({
-    // backgroundColor: "#0a0a0a",
     margin: "0 auto",
     color: "#fff",
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
     [theme.breakpoints.up("md")]: {
-        padding: theme.spacing(6),
+        padding: theme.spacing(4),
     },
 }));
 
@@ -115,9 +114,9 @@ export default function ContactForm() {
     };
 
     return (
-        <FormContainer maxWidth="lg">
-            <Typography variant="h3" sx={{ fontWeight: 700, mb: 4, letterSpacing: "-0.02em" }}>
-                Contact Form
+        <FormContainer maxWidth="md">
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, letterSpacing: "-0.02em" }}>
+                Send us a Message
             </Typography>
 
             <form onSubmit={handleSubmit}>
@@ -161,7 +160,7 @@ export default function ContactForm() {
                         />
                     </Box>
 
-                    <Box>
+                    {/* <Box>
                         <FieldLabel>Location</FieldLabel>
                         <DarkInput
                             select
@@ -185,9 +184,9 @@ export default function ContactForm() {
                             <MenuItem value="austin">Austin, TX</MenuItem>
                             <MenuItem value="houston">Houston, TX</MenuItem>
                         </DarkInput>
-                    </Box>
+                    </Box> */}
 
-                    <Box>
+                    {/* <Box>
                         <FieldLabel>Service</FieldLabel>
                         <DarkInput
                             select
@@ -211,7 +210,7 @@ export default function ContactForm() {
                             <MenuItem value="refinance">Refinancing</MenuItem>
                             <MenuItem value="equity">Home Equity</MenuItem>
                         </DarkInput>
-                    </Box>
+                    </Box> */}
 
                     <Box>
                         <FieldLabel>Message</FieldLabel>

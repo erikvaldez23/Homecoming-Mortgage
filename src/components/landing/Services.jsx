@@ -34,7 +34,7 @@ const servicesData = [
 
 const Services = () => {
     return (
-        <Box sx={{ py: 20, overflow: 'hidden', color: '#fff' }}>
+        <Box sx={{ py: 20, overflow: 'hidden', color: '#fff', zoom: { md: 0.8, xs: 1 } }}>
             <Container maxWidth="lg">
                 {/* Header */}
                 <Box sx={{ mb: 12, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 4 }}>
