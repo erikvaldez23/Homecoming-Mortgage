@@ -42,7 +42,7 @@ app.post('/api/contact', async (req, res) => {
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: 'erikkvaldez@gmail.com', // Explicitly requested destination
+        to: 'Pirouz@mortgagehmc.com', // Explicitly requested destination
         subject: subject || `New Lead Form Submission from ${name}`,
         html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
