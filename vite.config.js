@@ -7,7 +7,10 @@ export default defineConfig({
   server: {
     host: true, // Allow network access for mobile testing
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': {
+        target: 'https://homecoming-mortgage-server.onrender.com',
+        changeOrigin: true,
+      }
     }
   },
   build: {

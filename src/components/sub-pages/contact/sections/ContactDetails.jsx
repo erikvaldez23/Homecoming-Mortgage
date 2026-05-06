@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Grid, Stack } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
+import { motion } from "framer-motion";
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
@@ -9,7 +10,7 @@ import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 
 // --- Styled Components ---
 
-const GlassCard = styled("div")({
+const GlassCard = styled(motion.div)({
     // background: "rgba(255, 255, 255, 0.03)",
     backdropFilter: "blur(20px)",
     borderRadius: "24px",
@@ -17,6 +18,23 @@ const GlassCard = styled("div")({
     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
     overflow: "hidden",
 });
+
+
+
+// --- Animations ---
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const ContactDetails = () => {
 
@@ -34,8 +52,8 @@ const ContactDetails = () => {
 
                     {/* Left Column: Visual & Info */}
                     <Grid item xs={12} md={5}>
-                        <Box>
-                            <Box>
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+                            <motion.div variants={itemVariants}>
                                 {/* <Typography variant="h1" sx={{
                                     fontWeight: 900,
                                     fontSize: { xs: "3.5rem", md: "5rem" },
@@ -48,9 +66,9 @@ const ContactDetails = () => {
                                 }}>
                                     Let's<br />Talk.
                                 </Typography> */}
-                            </Box>
+                            </motion.div>
 
-                            <Box>
+                            <motion.div variants={itemVariants}>
                                 {/* <Typography sx={{
                                     fontSize: "1.2rem",
                                     color: "grey.400",
@@ -60,17 +78,17 @@ const ContactDetails = () => {
                                 }}>
                                     Ready to start your journey? We're here to help you navigate the path to your dream home.
                                 </Typography> */}
-                            </Box>
+                            </motion.div>
 
                             <Stack spacing={4}>
                                 {[
-                                    { icon: <LocalPhoneOutlinedIcon />, label: "Call Us", value: "(972) 339-0630" },
+                                    { icon: <LocalPhoneOutlinCedIcon />, label: "Call Us", value: "(972) 339-0630" },
                                     { icon: <EmailOutlinedIcon />, label: "Email Us", value: "Pirouz@mortgagehmc.com" },
                                     { icon: <LocationOnOutlinedIcon />, label: "Visit Us", value: "13601 Preston Rd. Suite 102E, Dallas, TX 75240" },
                                     { icon: <BusinessOutlinedIcon />, label: "Company NMLS", value: "2582358" },
                                     { icon: <BadgeOutlinedIcon />, label: "Individual NMLS", value: "1641846" }
                                 ].map((item, index) => (
-                                    <Box key={index}>
+                                    <motion.div key={index} variants={itemVariants} whileHover={{ x: 10, transition: { duration: 0.2 } }}>
                                         <Stack direction="row" spacing={3} alignItems="center">
                                             <Box sx={{
                                                 p: 1.5,
@@ -87,10 +105,10 @@ const ContactDetails = () => {
                                                 <Typography variant="h6" sx={{ fontSize: "1.1rem", fontWeight: 500 }}>{item.value}</Typography>
                                             </Box>
                                         </Stack>
-                                    </Box>
+                                    </motion.div>
                                 ))}
                             </Stack>
-                        </Box>
+                        </motion.div>
                     </Grid>
 
                     {/* Right Column: Floating Form */}
