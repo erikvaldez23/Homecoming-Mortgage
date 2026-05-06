@@ -82,7 +82,7 @@ const ContactDetails = () => {
 
                             <Stack spacing={4}>
                                 {[
-                                    { icon: <LocalPhoneOutlinCedIcon />, label: "Call Us", value: "(972) 339-0630" },
+                                    { icon: <LocalPhoneOutlinedIcon />, label: "Call Us", value: "(972) 339-0630" },
                                     { icon: <EmailOutlinedIcon />, label: "Email Us", value: "Pirouz@mortgagehmc.com" },
                                     { icon: <LocationOnOutlinedIcon />, label: "Visit Us", value: "13601 Preston Rd. Suite 102E, Dallas, TX 75240" },
                                     { icon: <BusinessOutlinedIcon />, label: "Company NMLS", value: "2582358" },
