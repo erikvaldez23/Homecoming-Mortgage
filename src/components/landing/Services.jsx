@@ -125,7 +125,7 @@ const Services = () => {
                                             variant="h3"
                                             sx={{
                                                 fontWeight: 800,
-                                                color: "rgba(255,255,255,0.1)",
+                                                color: "rgba(255,255,255,0.7)",
                                                 lineHeight: 0.8,
                                                 fontSize: "3rem",
                                                 fontFamily: 'monospace'
